@@ -8,9 +8,9 @@ import Link from 'next/link'
 interface headerProps {
   className?: string
 }
-export default function Header({ className }: headerProps) {
+export  function Header({ className }: headerProps) {
   return (
-    <header className={cn('border border-b', className)}>
+    <header className={cn('border border-b ', className)}>
       <Container className="flex items-center justify-between py-8">
         {/*Левая часть */}
         <Link href={'/'} className="flex items-center gap-4">
