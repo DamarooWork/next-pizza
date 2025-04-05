@@ -51,21 +51,21 @@ export function Filters({}: filtersProps) {
           className="mt-10"
           limit={5}
           defaultItems={[
-            { text: 'Томаты', value: '1' },
+            { text: 'Цыпленок', value: '1' },
             { text: 'Сырный соус', value: '2' },
-            { text: 'Томаты3', value: '3' },
-            { text: 'Томаты4', value: '4' },
+            { text: 'Моцарелла', value: '3' },
+            { text: 'Сыры чеддер и пармезан', value: '4' },
           ]}
           items={[
-            { text: 'Томаты', value: '1' },
+            { text: 'Цыпленок', value: '1' },
             { text: 'Сырный соус', value: '2' },
-            { text: 'Томаты3', value: '3' },
-            { text: 'Томаты4', value: '4' },
-            { text: 'Томаты5', value: '5' },
-            { text: 'Томаты6', value: '6' },
-            { text: 'Томаты4', value: '4' },
-            { text: 'Томаты5', value: '5' },
-            { text: 'Томаты6', value: '6' },
+            { text: 'Моцарелла', value: '3' },
+            { text: 'Сыры чеддер и пармезан', value: '4' },
+            { text: 'Курица', value: '5' },
+            { text: 'Колбаски', value: '6' },
+            { text: 'Соус альфредо', value: '4' },
+            { text: 'Чеснок', value: '5' },
+            { text: 'Томаты', value: '6' },
           ]}
           // loading={loading}
           // onClickCheckbox={filters.setSelectedIngredients}

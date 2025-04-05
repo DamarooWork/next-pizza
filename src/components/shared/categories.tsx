@@ -7,9 +7,7 @@ interface categoriesProps {
   items: string[]
 }
 
-
-
-export function Categories({items}: categoriesProps) {
+export function Categories({ items }: categoriesProps) {
   const categoryActiveId = useCategoryStore((state) => state.activeId)
   return (
     <section className="inline-flex gap-1 bg-gray-50 p-1 rounded-2xl">
@@ -20,7 +18,7 @@ export function Categories({items}: categoriesProps) {
             categoryActiveId === i &&
               'bg-white shadow-md shadow-gray-200 text-primary'
           )}
-          href={`/#cat`}
+          href={`/#${cat}`}
           key={cat}
         >
           <button className="cursor-pointer">{cat}</button>
