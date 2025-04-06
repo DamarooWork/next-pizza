@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
-import { Container } from '@/components/shared'
+import { Container, SearchInput } from '@/components/shared'
 import Image from 'next/image'
-import { Button } from '@/components/ui'
+import { Button, Input } from '@/components/ui'
 import { ArrowRight, ShoppingCart, User } from 'lucide-react'
 import Link from 'next/link'
 
@@ -28,6 +28,11 @@ export function Header({ className }: headerProps) {
             </p>
           </div>
         </Link>
+
+        <div className=" mx-10 flex-1">
+          <SearchInput />
+        </div>
+
         {/* Правая часть */}
         <section className="flex items-center gap-3">
           <Button className="flex items-center gap-1 " variant={'outline'}>
