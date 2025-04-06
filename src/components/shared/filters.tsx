@@ -7,7 +7,7 @@ import { Title } from './title'
 interface filtersProps {}
 export function Filters({}: filtersProps) {
   return (
-    <aside className="w-[250px]">
+    <aside className="w-[250px] sticky top-33 self-start">
       <Title text="Фильтрация" size="sm" className="mb-5 font-bold" />
 
       {/* Вверхние чекбоксы */}

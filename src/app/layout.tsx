@@ -23,7 +23,7 @@ export default function RootLayout({
       <head>
         <link data-rh="true" rel="icon/png" href="/icon.png" />
       </head>
-      <body className={nunito.className + 'min-h-screen'}>
+      <body className={nunito.className + ' min-h-screen'}>
         <Header />
         <main>{children}</main>
       </body>

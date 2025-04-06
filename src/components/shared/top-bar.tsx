@@ -9,7 +9,11 @@ interface Props {
   categories: []
   className?: string
 }
-const cats = ['Пиццы', 'Combo', 'Закуски']
+const cats = [
+  { id: 1, name: 'Пиццы' },
+  { id: 2, name: 'Комбо' },
+  { id: 3, name: 'Закуски' },
+]
 export const TopBar: React.FC<Props> = ({ categories, className }) => {
   return (
     <div
