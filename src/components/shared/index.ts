@@ -6,7 +6,7 @@ export { SortPopup } from './sort-popup';
 export { TopBar } from './top-bar';
 export { Filters } from './filters';
 export { FilterCheckbox } from './filter-checkbox';
-// export { PizzaImage } from './pizza-image';
+export { ProductImage } from './product-image';
 // export { ChooseProductForm } from './choose-product-form';
 // export { ChoosePizzaForm } from './choose-pizza-form';
 // export { ProductsGroupList } from './products-group-list';

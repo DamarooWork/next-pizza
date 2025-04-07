@@ -1,13 +1,31 @@
+import { Container } from '@/components/shared/container'
+import { prisma } from '../../../../prisma'
+import { notFound } from 'next/navigation'
+import { ProductImage } from '@/components/shared/product-image'
 interface Props {
-  className?: string
   params: {
     id: string
   }
 }
-export default function ProductPage({ className, params }: Props) {
+export default async function ProductPage({ params }: Props) {
+  const { id } = await params
+  const product = await prisma.product.findFirst({
+    where: {
+      id: Number(id),
+    },
+  })
+
+  if (!product) {
+    return notFound()
+  }
   return (
-    <section className={className}>
-      <p>Product {params.id}</p>
-    </section>
+    <Container className="mt-10">
+      <ProductImage
+        className=""
+        src={product.imageUrl}
+        alt={product.name}
+        size={40}
+      />
+    </Container>
   )
 }

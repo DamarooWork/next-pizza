@@ -21,7 +21,7 @@ export default function ProductCard({
   className,
 }: Props) {
   return (
-    <Link href={`/products/${id}`} className={className + 'block group'}>
+    <Link href={`/product/${id}`} className={className + 'block group'}>
       <div className="flex justify-center p-6 bg-primary-foreground rounded-lg h-[260px]">
         <Image
           className="size-[215px] group-hover:-translate-y-1  transition-all duration-300 ease-in-out"
@@ -39,7 +39,7 @@ export default function ProductCard({
       </p>
       <div className="flex justify-between items-center mt-4">
         <span className="text-[20px]">
-          от <b>{price} ₽</b>
+          от <b>{price.toFixed()} ₽</b>
         </span>
 
         <Button variant="secondary" className="text-base font-bold">

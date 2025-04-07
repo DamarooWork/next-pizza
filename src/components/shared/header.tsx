@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import { Container, SearchInput } from '@/components/shared'
 import Image from 'next/image'
-import { Button, Input } from '@/components/ui'
+import { Button } from '@/components/ui'
 import { ArrowRight, ShoppingCart, User } from 'lucide-react'
 import Link from 'next/link'
 
