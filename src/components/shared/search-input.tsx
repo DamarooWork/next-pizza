@@ -13,7 +13,7 @@ interface Props {
 }
 export function SearchInput({ className }: Props) {
   const [focused, setFocused] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState<string>('')
   const [products, setProducts] = useState<Product[]>([])
   const ref = useRef(null)
 
