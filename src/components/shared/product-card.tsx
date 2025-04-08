@@ -32,7 +32,7 @@ export default function ProductCard({
     <Link href={`/product/${id}`} className={className + 'block group'}>
       <div className="flex justify-center p-6 bg-primary-foreground rounded-lg h-[260px]">
         <Image
-          className="size-[215px] group-hover:-translate-y-1  transition-all duration-300 ease-in-out"
+          className="size-[215px] group-hover:translate-y-1 group-active:translate-y-2  transition-all duration-300 ease-in-out"
           src={imageUrl}
           alt={name}
           width={215}

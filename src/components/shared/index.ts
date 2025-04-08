@@ -1,17 +1,17 @@
-export { SearchInput } from './search-input';
-export { Container } from './container';
-export { Title } from './title';
-export { Categories } from './categories';
-export { SortPopup } from './sort-popup';
-export { TopBar } from './top-bar';
-export { Filters } from './filters';
-export { FilterCheckbox } from './filter-checkbox';
-export { ProductImage } from './product-image';
-// export { ChooseProductForm } from './choose-product-form';
-export { ChooseProductForm } from './choose-product-form';
-export { ProductsGroupList } from './products-group-list';
-export { GroupVariants } from './group-variants';
-// export { IngredientItem } from './ingredient-item';
+export { SearchInput } from './search-input'
+export { Container } from './container'
+export { Title } from './title'
+export { Categories } from './categories'
+export { SortPopup } from './sort-popup'
+export { TopBar } from './top-bar'
+export { Filters } from './filters'
+export { FilterCheckbox } from './filter-checkbox'
+export { PizzaImage } from './pizza-image'
+export { ChooseProductForm } from './choose-product-form'
+export { ChoosePizzaForm } from './choose-pizza-form'
+export { ProductsGroupList } from './products-group-list'
+export { GroupVariants } from './group-variants'
+export { IngredientItem } from './ingredient-item';
 // export { CartButton } from './cart-button';
 // export { CartDrawer } from './cart-drawer';
 // export { ProductForm } from './product-form';
@@ -30,4 +30,4 @@ export { GroupVariants } from './group-variants';
 // export * from './email-temapltes';
 // export * from './checkout';
 // export * from './form';
-// export * from './modals'
+export * from './modals'

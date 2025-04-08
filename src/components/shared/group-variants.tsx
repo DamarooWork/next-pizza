@@ -11,6 +11,7 @@ interface Props {
   items: readonly Variant[]
   onClick?: (value: Variant['value']) => void
   value?: Variant['value']
+
   className?: string
 }
 export function GroupVariants({ className, items, onClick, value }: Props) {
@@ -29,7 +30,7 @@ export function GroupVariants({ className, items, onClick, value }: Props) {
             'flex items-center justify-center cursor-pointer h-[30px] px-5 flex-1 rounded-3xl transition-all duration-400 ease-in-out text-sm',
             {
               'bg-white shadow': item.value === value,
-              'text-gray-500 opacity-50 pointer-events-none': item.disabled,
+              'text-gray-500 opacity-50  cursor-not-allowed': item.disabled,
             }
           )}
           disabled={item.disabled}
