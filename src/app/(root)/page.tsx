@@ -19,7 +19,7 @@ export default async function Home() {
         <Title text="Все пиццы" size="lg" className="font-extrabold" />
       </Container>
       <TopBar
-        categories={categories.filter(
+        categories={categories?.filter(
           (category) => category?.products.length > 0
         )}
       />
@@ -33,9 +33,9 @@ export default async function Home() {
           {/* Список товаров */}
           <div className="flex-1">
             <div className="flex flex-col gap-16">
-              {categories.map(
+              {categories?.map(
                 (category, i) =>
-                  category.products.length > 0 && (
+                  category?.products.length > 0 && (
                     <ProductsGroupList
                       key={category.id}
                       title={category.name}
