@@ -13,7 +13,7 @@ interface Props {
   className?: string
   listClassName?: string
 }
-export default function ProductsGroupList({
+export function ProductsGroupList({
   title,
   items,
   listClassName,

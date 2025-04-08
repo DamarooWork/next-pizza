@@ -3,15 +3,23 @@ import Image from 'next/image'
 import { Title } from './title'
 import { Button } from '../ui'
 import { Plus } from 'lucide-react'
+import { Prisma } from '@prisma/client'
 
-interface Props {
-  id: number
-  name: string
-  price: number
-  imageUrl: string
-  ingredients: string[]
+const ProductSelect = {
+  id: true,
+  name: true,
+  imageUrl: true,
+  ingredients: true,
+} satisfies Prisma.ProductSelect
+
+interface ProductCardProps
+  extends Prisma.ProductGetPayload<{
+    select: typeof ProductSelect
+  }> {
   className?: string
+  price: number
 }
+
 export default function ProductCard({
   id,
   name,
@@ -19,7 +27,7 @@ export default function ProductCard({
   imageUrl,
   ingredients,
   className,
-}: Props) {
+}: ProductCardProps) {
   return (
     <Link href={`/product/${id}`} className={className + 'block group'}>
       <div className="flex justify-center p-6 bg-primary-foreground rounded-lg h-[260px]">
@@ -32,10 +40,13 @@ export default function ProductCard({
           sizes="215px"
         />
       </div>
-      <Title text={name} size="sm" className="mb-1 mt-3 font-bold" />
+      <Title
+        text={name}
+        size="sm"
+        className="mb-1 mt-3 font-bold line-clamp-1"
+      />
       <p className="text-sm text-gray-400">
-        Цыпленок, моцарелла, сыры чеддер и пармезан, сырный соус, томаты, соус
-        альфредо, чеснок
+        {ingredients.map((ingredient) => ingredient.name).join(', ')}
       </p>
       <div className="flex justify-between items-center mt-4">
         <span className="text-[20px]">

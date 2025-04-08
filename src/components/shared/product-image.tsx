@@ -9,14 +9,19 @@ interface Props {
 }
 export function ProductImage({ className, src, alt, size }: Props) {
   return (
-    <section className={cn('relative', className)}>
+    <section
+      className={cn(
+        'relative flex items-center justify-center',
+        className
+      )}
+    >
       <Image
         className={cn(
-          'relative left-2 top-2 transition-all z-10 duration-300',
+          'relative left-2 top-2 transition-all z-10 duration-300 aspect-square',
           {
-            'size-[300px]': size === 20,
-            'size-[400px]': size === 30,
-            'size-[500px]': size === 40,
+            'max-w-[300px] max-h-[300px] ': size === 20,
+            'max-w-[400px] max-h-[400px] ': size === 30,
+            'max-w-[500px] max-h-[500px] ': size === 40,
           }
         )}
         src={src}
