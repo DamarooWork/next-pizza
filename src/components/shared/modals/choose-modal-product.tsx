@@ -3,7 +3,7 @@ import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
 import { Prisma, Product } from '@prisma/client'
 import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
-import { ChoosePizzaForm } from '@/components/shared'
+import { ChooseProductForm } from '@/components/shared'
 
 const ProductSelect = {
   id: true,
@@ -30,7 +30,7 @@ export function ChooseModalProduct({ product, className, children }: Props) {
         )}
       >
         <DialogTitle className="hidden">{product.name}</DialogTitle>
-        <ChoosePizzaForm
+        <ChooseProductForm
           imageUrl={product.imageUrl}
           name={product.name}
           ingredients={product.ingredients}
