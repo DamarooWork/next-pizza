@@ -4,16 +4,21 @@ import { ProductImage } from '@/components/shared/product-image'
 import { Title } from '@/components/shared/title'
 import { GroupVariants } from '@/components/shared'
 import { prisma } from '@/../prisma'
+import { ChooseModalProduct } from '@/components/shared/modals'
 interface Props {
   params: {
     id: string
   }
 }
-export default async function ProductPage({ params }: Props) {
+export default async function ProductModalPage({ params }: Props) {
   const { id } = await params
   const product = await prisma.product.findFirst({
     where: {
       id: Number(id),
+    },
+    include: {
+      ingredients: true,
+      items: true,
     },
   })
 
@@ -21,7 +26,7 @@ export default async function ProductPage({ params }: Props) {
     return notFound()
   }
   return (
-    <Container className="mt-10">
+    <ChooseModalProduct product={product}>
       <section className="flex flex-1 gap-10">
         <ProductImage
           className=""
@@ -55,6 +60,6 @@ export default async function ProductPage({ params }: Props) {
           />
         </div>
       </section>
-    </Container>
+    </ChooseModalProduct>
   )
 }

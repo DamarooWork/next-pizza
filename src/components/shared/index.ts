@@ -8,7 +8,7 @@ export { Filters } from './filters';
 export { FilterCheckbox } from './filter-checkbox';
 export { ProductImage } from './product-image';
 // export { ChooseProductForm } from './choose-product-form';
-// export { ChoosePizzaForm } from './choose-pizza-form';
+export { ChoosePizzaForm } from './choose-pizza-form';
 export { ProductsGroupList } from './products-group-list';
 export { GroupVariants } from './group-variants';
 // export { IngredientItem } from './ingredient-item';
