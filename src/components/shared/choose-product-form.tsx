@@ -29,11 +29,12 @@ export function ChooseProductForm({
   return (
     <section className={cn('flex flex-1', className)}>
       <ProductImage src={imageUrl} alt={name} size={40} />
-      <div className="w-[490px] bg-[#f7f6f5] p-7">
-        <Title text={name} className="font-extrabold mb-1" size="md" />
-        <p className="text-gray-400">{textDetails}</p>
-        <div className="flex flex-col gap-4 mt-5">
-          {/* <GroupVariants
+      <div className="flex justify-between flex-col w-[490px] bg-[#f7f6f5] p-7">
+        <div>
+          <Title text={name} className="font-extrabold mb-1" size="md" />
+          <p className="text-gray-400">{textDetails}</p>
+          {/* <div className="flex flex-col gap-4 mt-5">
+           <GroupVariants
             items={availableSizes}
             value={String(size)}
             onClick={(value) => setSize(Number(value) as PizzaSize)}
@@ -43,7 +44,7 @@ export function ChooseProductForm({
             items={pizzaTypes}
             value={String(type)}
             onClick={(value) => setType(Number(value) as PizzaType)}
-          /> */}
+          /> </div> */}
         </div>
 
         {/* <div className="bg-gray-50 p-5 rounded-md h-[420px] overflow-auto scrollbar mt-5">

@@ -11,7 +11,7 @@ interface Props {
 }
 export default async function ProductPage({ params }: Props) {
   const { id } = await params
-  const product = await prisma.product.findFirst({
+  const product = await prisma.product.findUnique({
     where: {
       id: Number(id),
     },
@@ -23,12 +23,7 @@ export default async function ProductPage({ params }: Props) {
   return (
     <Container className="mt-10">
       <section className="flex flex-1 gap-10">
-        <ProductImage
-          className=""
-          src={product.imageUrl}
-          alt={product.name}
-          size={40}
-        />
+        <ProductImage src={product.imageUrl} alt={product.name} size={40} />
         <div className="flex flex-col gap-2">
           <Title text={product.name} size="lg" className="font-extrabold" />
           <p className="text-sm text-gray-500">

@@ -3,7 +3,7 @@ import { ProductsGroupList } from '@/components/shared'
 import { Suspense } from 'react'
 import { prisma } from '@/../prisma'
 export default async function Home() {
-  const categories = await prisma.category.findMany({
+  const categories = await prisma?.category.findMany({
     include: {
       products: {
         include: {
@@ -20,7 +20,7 @@ export default async function Home() {
       </Container>
       <TopBar
         categories={categories.filter(
-          (category) => category.products.length > 0
+          (category) => category?.products.length > 0
         )}
       />
       <Container className="mt-10 pb-14 ">
