@@ -9,7 +9,7 @@ interface CategoryWithProducts extends Category {
 }
 
 export default async function Home() {
-  let categories: CategoryWithProducts[] =[]
+  let categories: CategoryWithProducts[] = []
   try {
     categories = await prisma?.category.findMany({
       include: {
@@ -29,7 +29,7 @@ export default async function Home() {
       <Container className="mt-4 lg:mt-10">
         <Title text="Все пиццы" size="lg" className="font-extrabold" />
       </Container>
-      {categories.length > 0 && (
+      {categories?.length > 0 && (
         <TopBar
           categories={categories?.filter(
             (category) => category?.products.length > 0
@@ -44,7 +44,7 @@ export default async function Home() {
           </Suspense>
 
           {/* Список товаров */}
-          {categories.length > 0 && (
+          {categories?.length > 0 && (
             <div className="flex-1">
               <div className="flex flex-col gap-16">
                 {categories?.map(
