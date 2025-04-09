@@ -13,7 +13,10 @@ export { ProductsGroupList } from './products-group-list'
 export { GroupVariants } from './group-variants'
 export { IngredientItem } from './ingredient-item';
 export { CartButton } from './cart-button';
-// export { CartDrawer } from './cart-drawer';
+export { CartDrawer } from './cart-drawer';
+export { CartDrawerItem } from './cart-drawer-item';
+export { CountButton } from './count-button';
+export { CountIconButton } from './count-icon-button';
 // export { ProductForm } from './product-form';
 // export { WhiteBlock } from './white-block';
 // export { CheckoutItemDetails } from './checkout-item-details';

@@ -1,4 +1,4 @@
-import { Ingredient, Product } from "@prisma/client"
+import { Ingredient } from "@prisma/client"
 import { axiosInstance } from "./instance"
 import { ApiRoutes } from "./constans"
 export const getAll = async (): Promise<Ingredient[]> => {
