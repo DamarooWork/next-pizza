@@ -5,10 +5,10 @@ import ProductCard from './product-card'
 import { useIntersection } from 'react-use'
 import { useEffect, useRef } from 'react'
 import { useCategoryStore } from '@/store/category'
-
+import { CategoryWithProducts } from '@/app/(root)/page'
 interface Props {
   title: string
-  items: any[]
+  items: CategoryWithProducts['products']
   categoryId: number
   className?: string
   listClassName?: string
@@ -22,9 +22,12 @@ export function ProductsGroupList({
 }: Props) {
   const setActiveCategoryId = useCategoryStore((state) => state.setActiveId)
   const intersectionRef = useRef<HTMLDivElement>(null)
-  const intersection = useIntersection(intersectionRef as React.RefObject<HTMLElement>, {
-    threshold: 0.4,
-  })
+  const intersection = useIntersection(
+    intersectionRef as React.RefObject<HTMLElement>,
+    {
+      threshold: 0.4,
+    }
+  )
   useEffect(() => {
     if (intersection?.isIntersecting) {
       setActiveCategoryId(categoryId)

@@ -3,10 +3,10 @@ import React from 'react'
 import { Container } from './container'
 import { Categories } from './categories'
 import { SortPopup } from './sort-popup'
-import { Category } from '@prisma/client'
+import { CategoryWithProducts } from '@/app/(root)/page'
 
 interface Props {
-  categories: Category[]
+  categories: CategoryWithProducts[]
   className?: string
 }
 
