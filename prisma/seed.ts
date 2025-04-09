@@ -5,7 +5,9 @@ import { _ingredients, categories, products } from './constants'
 const prisma = new PrismaClient()
 
 const randomDecimalNumber = (min: number, max: number) => {
-  return Math.floor(Math.random() * (max - min) * 10 + min * 10) / 10
+  const randomNumber =
+    Math.floor(Math.random() * (max - min) * 10 + min * 10) / 10
+  return Math.round(randomNumber)
 }
 
 const generateProductItem = ({

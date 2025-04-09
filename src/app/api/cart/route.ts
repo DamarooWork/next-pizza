@@ -3,20 +3,31 @@ import { prisma } from '../../../../prisma'
 
 export async function GET(req: NextRequest) {
   try {
-    const userId = 1
-    const token = req.headers.get('cartToken')?.valueOf()
+    const token = req.cookies.get('cartToken')?.value
     if (!token) {
-      return NextResponse.json({ items: [] }, { status: 200 })
+      return NextResponse.json({totalAmount: 0, items: [] }, { status: 200 })
     }
-    const cart = await prisma.cart.findUnique({
+    const cart = await prisma.cart.findFirst({
       where: {
-        userId,
+        token,
       },
       include: {
-        items: true
+        items: {
+          orderBy: {
+            createdAt: 'desc',
+          },
+          include: {
+            productItem: {
+              include: {
+                product: true,
+              },
+            },
+            ingredients: true,
+          },
+        },
       },
     })
-    return NextResponse.json({ items: cart?.items })
+    return NextResponse.json(cart)
   } catch (error) {
     return NextResponse.json({ error: 'Failed to get cart' }, { status: 500 })
   }
