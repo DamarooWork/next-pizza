@@ -2,7 +2,7 @@ import { Container, Filters, Title, TopBar } from '@/components/shared'
 import { ProductsGroupList } from '@/components/shared'
 import { Suspense } from 'react'
 import { prisma } from '@/../prisma'
-import { Category, Prisma, Product } from '@prisma/client'
+import { Prisma } from '@prisma/client'
 import { Skeleton } from '@/components/ui'
 const categorySelect = {
   id: true,
