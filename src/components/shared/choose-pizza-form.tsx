@@ -16,7 +16,8 @@ interface Props {
   ingredients: Ingredient[]
   items: ProductItem[]
   loading?: boolean
-  onSubmit: (itemId: number, ingredients: number[]) => void
+  description: string
+  onSubmit: (productItemId: number, ingredients: number[]) => void
   className?: string
 }
 export function ChoosePizzaForm({
@@ -26,6 +27,7 @@ export function ChoosePizzaForm({
   ingredients,
   items,
   loading,
+  description,
   onSubmit,
 }: Props) {
   const {
@@ -36,6 +38,7 @@ export function ChoosePizzaForm({
     setType,
     selectedIngredients,
     addIngredient,
+    currentItemId,
   } = UsePizzaOptions(items, ingredients)
 
   const { totalPrice, textDetails } = GetPizzaDetails(
@@ -45,8 +48,11 @@ export function ChoosePizzaForm({
     type,
     size
   )
-  const handleSubmit = () => {
-    onSubmit(items[0].id, Array.from(selectedIngredients))
+
+  const handleSubmit = async () => {
+    if (currentItemId) {
+      onSubmit(currentItemId, Array.from(selectedIngredients))
+    }
   }
   return (
     <section className={cn('flex flex-1 items-center max-h-[90vh]', className)}>
@@ -54,8 +60,9 @@ export function ChoosePizzaForm({
       <div className="flex  flex-col justify-between w-[490px] h-full bg-[#f7f6f5] p-7">
         <div className="flex flex-col gap-2">
           <Title text={name} className="font-extrabold" size="md" />
+          <p className="text-gray-400">{description}</p>
 
-          <p className="text-gray-400">{textDetails}</p>
+          <p className="text-gray-400 mb-2">{textDetails}</p>
           <GroupVariants
             value={String(size)}
             onClick={(value) => setSize(Number(value) as PizzaSize)}

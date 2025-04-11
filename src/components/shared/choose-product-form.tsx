@@ -8,19 +8,21 @@ import Image from 'next/image'
 interface Props {
   imageUrl: string
   name: string
+  price: number
   loading?: boolean
-  onSubmit: (itemId: number, ingredients: number[]) => void
+  onSubmit: () => void
   className?: string
+  description: string
 }
 export function ChooseProductForm({
   className,
   imageUrl,
   name,
+  price,
   loading,
   onSubmit,
+  description,
 }: Props) {
-  const textDetails = '40 см, традиционное тесто'
-  const totalPrice = 350
   return (
     <section className={cn('flex flex-1', className)}>
       <div className="flex items-center justify-center relative w-full">
@@ -35,11 +37,14 @@ export function ChooseProductForm({
       <div className="flex justify-between flex-col w-[490px] bg-[#f7f6f5] p-7">
         <div>
           <Title text={name} className="font-extrabold mb-1" size="md" />
-          <p className="text-gray-400">{textDetails}</p>
+          <p className="text-gray-400">{description}</p>
         </div>
 
-        <Button className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10 float-end">
-          Добавить в корзину за {totalPrice} ₽
+        <Button
+          onClick={() => onSubmit?.()}
+          className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10 float-end"
+        >
+          Добавить в корзину за {price} ₽
         </Button>
       </div>
     </section>

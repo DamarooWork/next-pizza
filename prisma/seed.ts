@@ -14,16 +14,19 @@ const generateProductItem = ({
   productId,
   pizzaType,
   size,
+  description,
 }: {
   productId: number
   pizzaType?: 1 | 2
   size?: 20 | 30 | 40
+  description?: string
 }) => {
   return {
     productId,
     price: randomDecimalNumber(190, 600),
     pizzaType,
     size,
+    description,
   } as Prisma.ProductItemUncheckedCreateInput
 }
 
@@ -67,6 +70,7 @@ async function up() {
       ingredients: {
         connect: _ingredients.slice(0, 5),
       },
+      description: 'Вкусная и сытная пицца с пепперони и сыром в печи',
     },
   })
 
@@ -79,6 +83,7 @@ async function up() {
       ingredients: {
         connect: _ingredients.slice(5, 10),
       },
+      description: 'Вкусная и сытная пицца с сыром и грибами',
     },
   })
 
@@ -91,6 +96,7 @@ async function up() {
       ingredients: {
         connect: _ingredients.slice(10, 40),
       },
+      description: 'Вкусная и сытная пицца с черизо и сыром в печи',
     },
   })
 

@@ -4,12 +4,13 @@ import { Prisma } from '@prisma/client'
 import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 import { ChoosePizzaForm, ChooseProductForm } from '@/components/shared'
-
+import { useCartStore } from '@/store/cart'
 const ProductSelect = {
   id: true,
   name: true,
   imageUrl: true,
   items: true,
+  description: true,
   ingredients: true,
 } satisfies Prisma.ProductSelect
 interface Props {
@@ -19,8 +20,26 @@ interface Props {
   className?: string
 }
 export function ChooseModalProduct({ product, className }: Props) {
+  const { addCartItem } = useCartStore()
   const router = useRouter()
-  const isPizzaForm = Boolean(product.items[0].pizzaType)
+  const firstItem = product.items[0]
+  const isPizzaForm = Boolean(firstItem.pizzaType)
+  const onAddProduct = async (
+    productItemId?: number,
+    ingredients?: number[]
+  ) => {
+    try {
+      const itemId = productItemId ?? firstItem.id
+      await addCartItem({
+        productItemId: itemId,
+        ingredients,
+      })
+      router.back()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <Dialog open={Boolean(product)} onOpenChange={() => router.back()}>
       <DialogContent
@@ -36,13 +55,16 @@ export function ChooseModalProduct({ product, className }: Props) {
             name={product.name}
             ingredients={product.ingredients}
             items={product.items}
-            onSubmit={() => {}}
+            onSubmit={onAddProduct}
+            description={product.description}
           />
         ) : (
           <ChooseProductForm
             imageUrl={product.imageUrl}
             name={product.name}
-            onSubmit={() => {}}
+            price={firstItem.price}
+            onSubmit={onAddProduct}
+            description={product.description}
           />
         )}
       </DialogContent>

@@ -14,7 +14,7 @@ export const categories = [
   {
     name: 'Напитки',
   },
-];
+]
 
 export const _ingredients = [
   {
@@ -32,7 +32,8 @@ export const _ingredients = [
   {
     name: 'Сыры чеддер и пармезан',
     price: 79,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA69C1FE796',
+    imageUrl:
+      'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA69C1FE796',
   },
   {
     name: 'Острый перец халапеньо',
@@ -43,47 +44,56 @@ export const _ingredients = [
   {
     name: 'Нежный цыпленок',
     price: 79,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA5B328D35A',
+    imageUrl:
+      'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA5B328D35A',
   },
   {
     name: 'Шампиньоны',
     price: 59,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA67259A324',
+    imageUrl:
+      'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA67259A324',
   },
   {
     name: 'Ветчина',
     price: 79,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA61B9A8D61',
+    imageUrl:
+      'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA61B9A8D61',
   },
   {
     name: 'Пикантная пепперони',
     price: 79,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA6258199C3',
+    imageUrl:
+      'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA6258199C3',
   },
   {
     name: 'Острая чоризо',
     price: 79,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA62D5D6027',
+    imageUrl:
+      'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA62D5D6027',
   },
   {
     name: 'Маринованные огурчики',
     price: 59,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A21DA51A81211E9EA89958D782B',
+    imageUrl:
+      'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A21DA51A81211E9EA89958D782B',
   },
   {
     name: 'Свежие томаты',
     price: 59,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA7AC1A1D67',
+    imageUrl:
+      'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA7AC1A1D67',
   },
   {
     name: 'Красный лук',
     price: 59,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA60AE6464C',
+    imageUrl:
+      'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA60AE6464C',
   },
   {
     name: 'Сочные ананасы',
     price: 59,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A21DA51A81211E9AFA6795BA2A0',
+    imageUrl:
+      'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A21DA51A81211E9AFA6795BA2A0',
   },
   {
     name: 'Итальянские травы',
@@ -94,12 +104,14 @@ export const _ingredients = [
   {
     name: 'Сладкий перец',
     price: 59,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA63F774C1B',
+    imageUrl:
+      'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A22FA54A81411E9AFA63F774C1B',
   },
   {
     name: 'Кубики брынзы',
     price: 79,
-    imageUrl: 'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA6B0FFC349',
+    imageUrl:
+      'https://cdn.dodostatic.net/static/Img/Ingredients/000D3A39D824A82E11E9AFA6B0FFC349',
   },
   {
     name: 'Митболы',
@@ -107,92 +119,126 @@ export const _ingredients = [
     imageUrl:
       'https://cdn.dodostatic.net/static/Img/Ingredients/b2f3a5d5afe44516a93cfc0d2ee60088.png',
   },
-].map((obj, index) => ({ id: index + 1, ...obj }));
+].map((obj, index) => ({ id: index + 1, ...obj }))
 
 export const products = [
   {
     name: 'Омлет с ветчиной и грибами',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7970321044479C1D1085457A36EB.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EE7970321044479C1D1085457A36EB.webp',
     categoryId: 2,
+    description: 'Вкусный и сытный завтрак',
   },
   {
     name: 'Омлет с пепперони',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE94ECF33B0C46BA410DEC1B1DD6F8.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EE94ECF33B0C46BA410DEC1B1DD6F8.webp',
     categoryId: 2,
+    description: 'Вкусный и сытный завтрак',
   },
   {
     name: 'Кофе Латте',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61B0C26A3F85D97A78FEEE00AD.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EE7D61B0C26A3F85D97A78FEEE00AD.webp',
     categoryId: 2,
+    description: 'Вкусный и сытный кофе с молоком',
   },
   {
     name: 'Дэнвич ветчина и сыр',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE796FF0059B799A17F57A9E64C725.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EE796FF0059B799A17F57A9E64C725.webp',
     categoryId: 3,
+    description: 'Вкусный и сытный завтрак',
   },
   {
     name: 'Куриные наггетсы',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D618B5C7EC29350069AE9532C6E.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EE7D618B5C7EC29350069AE9532C6E.webp',
     categoryId: 3,
+    description: 'Вкусные куриные наггетсы с соусом ',
   },
   {
     name: 'Картофель из печи с соусом 🌱',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EED646A9CD324C962C6BEA78124F19.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EED646A9CD324C962C6BEA78124F19.webp',
     categoryId: 3,
+    description: 'Вкусный и сытный картофель из печи с соусом',
   },
   {
     name: 'Додстер',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE796F96D11392A2F6DD73599921B9.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EE796F96D11392A2F6DD73599921B9.webp',
     categoryId: 3,
+    description: 'Вкусный и сытный додстер',
   },
   {
     name: 'Острый Додстер 🌶️🌶️',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE796FD3B594068F7A752DF8161D04.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EE796FD3B594068F7A752DF8161D04.webp',
     categoryId: 3,
+    description: 'Вкусный и сытный острый додстер',
   },
   {
     name: 'Банановый молочный коктейль',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EEE20B8772A72A9B60CFB20012C185.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EEE20B8772A72A9B60CFB20012C185.webp',
     categoryId: 4,
+    description: 'Вкусный и сытный банановый молочный коктейль',
   },
   {
     name: 'Карамельное яблоко молочный коктейль',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE79702E2A22E693D96133906FB1B8.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EE79702E2A22E693D96133906FB1B8.webp',
     categoryId: 4,
+    description: 'Вкусный и сытный карамельное яблоко молочный коктейль',
   },
   {
     name: 'Молочный коктейль с печеньем Орео',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE796FA1F50F8F8111A399E4C1A1E3.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EE796FA1F50F8F8111A399E4C1A1E3.webp',
     categoryId: 4,
+    description: 'Вкусный и сытный молочный коктейль с печеньем Орео',
   },
   {
     name: 'Классический молочный коктейль 👶',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE796F93FB126693F96CB1D3E403FB.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EE796F93FB126693F96CB1D3E403FB.webp',
     categoryId: 4,
+    description: 'Вкусный и сытный классический молочный коктейль',
   },
   {
     name: 'Ирландский Капучино',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61999EBDA59C10E216430A6093.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EE7D61999EBDA59C10E216430A6093.webp',
     categoryId: 5,
+    description: 'Вкусный и сытный ирландский капучино',
   },
   {
     name: 'Кофе Карамельный капучино',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61AED6B6D4BFDAD4E58D76CF56.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EE7D61AED6B6D4BFDAD4E58D76CF56.webp',
     categoryId: 5,
+    description: 'Вкусный и сытный кофе карамельный капучино',
   },
   {
     name: 'Кофе Кокосовый латте',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61B19FA07090EE88B0ED347F42.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EE7D61B19FA07090EE88B0ED347F42.webp',
     categoryId: 5,
+    description: 'Вкусный и сытный кофе кокосовый латте',
   },
   {
     name: 'Кофе Американо',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61B044583596548A59078BBD33.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EE7D61B044583596548A59078BBD33.webp',
     categoryId: 5,
+    description: 'Вкусный и сытный кофе американо',
   },
   {
     name: 'Кофе Латте',
-    imageUrl: 'https://media.dodostatic.net/image/r:584x584/11EE7D61B0C26A3F85D97A78FEEE00AD.webp',
+    imageUrl:
+      'https://media.dodostatic.net/image/r:584x584/11EE7D61B0C26A3F85D97A78FEEE00AD.webp',
     categoryId: 5,
+    description: 'Вкусный и сытный кофе латте',
   },
-];
+]

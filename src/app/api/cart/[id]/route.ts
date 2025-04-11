@@ -39,7 +39,7 @@ export async function PATCH(
 
     return NextResponse.json(updatedUserCart)
   } catch (error) {
-    console.log('[CART_PATCH] Server error', error)
+    console.log('[CARTITEM_PATCH] Server error', error)
     return NextResponse.json(
       { message: 'Не удалось обновить корзину' },
       { status: 500 }
@@ -62,7 +62,7 @@ export async function DELETE(
 
     const cartItem = await prisma.cartItem.findFirst({
       where: {
-        id: Number(params.id),
+        id,
       },
     })
 
@@ -72,7 +72,7 @@ export async function DELETE(
 
     await prisma.cartItem.delete({
       where: {
-        id: Number(params.id),
+        id,
       },
     })
 
