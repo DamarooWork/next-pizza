@@ -8,10 +8,17 @@ interface Props {
   className?: string
 }
 export function CartButton({ className }: Props) {
-  const { totalAmount, items } = useCartStore()
+  const { totalAmount, items, loading } = useCartStore()
   return (
     <CartDrawer>
-      <Button className={cn('group relative cursor-pointer', className)}>
+      <Button
+        loading={loading}
+        className={cn(
+          'group relative cursor-pointer',
+          { 'w-[105px]': loading },
+          className,
+        )}
+      >
         <b>{totalAmount} P</b>
         <span className="h-full w-[1px] bg-white/30 mx-3"></span>
         <div className="flex items-center gap-1 transition duration-300 group-hover:opacity-0">

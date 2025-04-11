@@ -41,6 +41,7 @@ export function ChooseProductForm({
         </div>
 
         <Button
+          loading={loading}
           onClick={() => onSubmit?.()}
           className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10 float-end"
         >

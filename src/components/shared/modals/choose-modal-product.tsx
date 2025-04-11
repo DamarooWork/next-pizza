@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 import { ChoosePizzaForm, ChooseProductForm } from '@/components/shared'
 import { useCartStore } from '@/store/cart'
+import { toast } from 'react-hot-toast'
 const ProductSelect = {
   id: true,
   name: true,
@@ -20,7 +21,7 @@ interface Props {
   className?: string
 }
 export function ChooseModalProduct({ product, className }: Props) {
-  const { addCartItem } = useCartStore()
+  const { addCartItem, loading } = useCartStore()
   const router = useRouter()
   const firstItem = product.items[0]
   const isPizzaForm = Boolean(firstItem.pizzaType)
@@ -34,9 +35,13 @@ export function ChooseModalProduct({ product, className }: Props) {
         productItemId: itemId,
         ingredients,
       })
+      toast.success(
+        `${itemId ? 'Пицца добавлена' : 'Товар добавлен'}  в корзину`
+      )
       router.back()
     } catch (error) {
       console.error(error)
+      toast.error('Ошибка при добавлении в корзину')
     }
   }
 
@@ -57,6 +62,7 @@ export function ChooseModalProduct({ product, className }: Props) {
             items={product.items}
             onSubmit={onAddProduct}
             description={product.description}
+            loading={loading}
           />
         ) : (
           <ChooseProductForm
@@ -65,6 +71,7 @@ export function ChooseModalProduct({ product, className }: Props) {
             price={firstItem.price}
             onSubmit={onAddProduct}
             description={product.description}
+            loading={loading}
           />
         )}
       </DialogContent>

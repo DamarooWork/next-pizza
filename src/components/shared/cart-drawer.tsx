@@ -45,7 +45,8 @@ export function CartDrawer({ children }: Props) {
           <SheetTitle>
             В корзине{' '}
             <span className="font-bold">
-              {items.length} {getDeclension(items.length, {
+              {items.length}{' '}
+              {getDeclension(items.length, {
                 one: 'товар',
                 few: 'товара',
                 many: 'товаров',
@@ -73,7 +74,12 @@ export function CartDrawer({ children }: Props) {
               name={item.name}
               price={item.price}
               quantity={item.quantity}
-              onClickCountButton={(type) => updateItemQuantity(item.id, type === 'plus' ? item.quantity + 1 : item.quantity - 1)}
+              onClickCountButton={(type) =>
+                updateItemQuantity(
+                  item.id,
+                  type === 'plus' ? item.quantity + 1 : item.quantity - 1
+                )
+              }
               onClickRemove={() => removeCartItem(item.id)}
             />
           ))}

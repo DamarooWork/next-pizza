@@ -1,6 +1,6 @@
 import { Nunito } from 'next/font/google'
 import './globals.css'
-
+import { Toaster } from 'react-hot-toast';
 const nunito = Nunito({
   subsets: ['cyrillic'],
   variable: '--font-nunito',
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={nunito.className + ' min-h-screen relative'}>{children}</body>
+      <body className={nunito.className + ' min-h-screen relative'}>{children}   <Toaster /></body>
     </html>
   )
 }
