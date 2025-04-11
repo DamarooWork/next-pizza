@@ -1,64 +1,30 @@
 import { Container, Filters, Title, TopBar } from '@/components/shared'
 import { ProductsGroupList } from '@/components/shared'
 import { Suspense } from 'react'
-import { prisma } from '@/../prisma'
-import { Prisma } from '@prisma/client'
-import { Skeleton } from '@/components/ui'
-const categorySelect = {
-  id: true,
-  name: true,
-  products: {
-    include: {
-      items: true,
-      ingredients: true,
-    },
-  },
-} satisfies Prisma.CategorySelect
+import { FindPizzas } from '@/lib'
+import { CategoryWithProducts, GetSearchParams } from '@/lib/find-pizzas'
 
-export interface CategoryWithProducts
-  extends Prisma.CategoryGetPayload<{
-    select: typeof categorySelect
-  }> {}
-
-export default async function Home() {
-  let categories: CategoryWithProducts[] = []
-  let isLoading: boolean = false
-  try {
-    isLoading = true
-    categories = await prisma.category.findMany({
-      include: {
-        products: {
-          include: {
-            items: true,
-            ingredients: true,
-          },
-        },
-      },
-    })
-  } catch (error) {
-    console.error('Error fetching categories:', error)
-  } finally {
-    isLoading = false
-  }
-
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: GetSearchParams
+}) {
+  const params = await searchParams
+  const categories: CategoryWithProducts[] = await FindPizzas(params)
   return (
     <>
       <Container className="mt-4 lg:mt-10">
         <Title text="Все пиццы" size="lg" className="font-extrabold" />
       </Container>
-      {isLoading ? (
-        <Skeleton className="h-[50px] w-full" />
-      ) : (
-        <TopBar
-          categories={categories.filter(
-            (category) => category.products.length > 0
-          )}
-        />
-      )}
+      <TopBar
+        categories={categories.filter(
+          (category) => category.products.length > 0
+        )}
+      />
       <Container className="mt-10 pb-14 ">
         <div className="flex  gap-[60px]  ">
           {/* Фильтрация */}
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense>
             <Filters />
           </Suspense>
 

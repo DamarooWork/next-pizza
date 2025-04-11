@@ -5,7 +5,7 @@ import ProductCard from './product-card'
 import { useIntersection } from 'react-use'
 import { useEffect, useRef } from 'react'
 import { useCategoryStore } from '@/store/category'
-import { CategoryWithProducts } from '@/app/(root)/page'
+import { CategoryWithProducts } from '@/lib/find-pizzas'
 interface Props {
   title: string
   items: CategoryWithProducts['products']
@@ -38,7 +38,7 @@ export function ProductsGroupList({
       <Title text={title} size="lg" className="font-extrabold mb-5" />
       <ul
         className={cn(
-          'grid grid-cols-1 md:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4 gap-[30px] ',
+          'grid grid-cols-1 md:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4 gap-[30px] auto-cols-max',
           listClassName
         )}
       >

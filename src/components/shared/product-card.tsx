@@ -26,28 +26,33 @@ export default function ProductCard({
   price,
   imageUrl,
   ingredients,
-  className,
 }: ProductCardProps) {
   return (
-    <Link href={`/product/${id}`} className={className + 'block group'}>
-      <div className="flex justify-center p-6 bg-primary-foreground rounded-lg h-[260px]">
-        <Image
-          className="size-[215px] group-hover:translate-y-1 group-active:translate-y-2  transition-all duration-300 ease-in-out"
-          src={imageUrl}
-          alt={name}
-          width={215}
-          height={215}
-          sizes="215px"
+    <Link
+      href={`/product/${id}`}
+      className={'group flex flex-col justify-between'}
+    >
+      <div>
+        <div className="flex justify-center p-6 bg-primary-foreground rounded-lg h-[260px]">
+          <Image
+            className="size-[215px] group-hover:translate-y-1 group-active:translate-y-2  transition-all duration-300 ease-in-out"
+            src={imageUrl}
+            alt={name}
+            width={215}
+            height={215}
+            sizes="215px"
+          />
+        </div>
+        <Title
+          text={name}
+          size="sm"
+          className="mb-1 mt-3 font-bold line-clamp-1"
         />
+        <p className="text-sm text-gray-400 line-clamp-3">
+          {ingredients.map((ingredient) => ingredient.name).join(', ')}
+        </p> 
       </div>
-      <Title
-        text={name}
-        size="sm"
-        className="mb-1 mt-3 font-bold line-clamp-1"
-      />
-      <p className="text-sm text-gray-400">
-        {ingredients.map((ingredient) => ingredient.name).join(', ')}
-      </p>
+
       <div className="flex justify-between items-center mt-4">
         <span className="text-[20px]">
           от <b>{price.toFixed()} ₽</b>
