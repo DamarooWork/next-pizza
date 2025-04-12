@@ -3,7 +3,6 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
-  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
@@ -14,31 +13,22 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { CartDrawerItem } from './cart-drawer-item'
 import { getCartItemDetails } from '@/lib/get-cart-item-details'
-import { useCartStore } from '@/store'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { PizzaSize, PizzaType } from '@/lib/constants'
 import { getDeclension } from '@/lib/utils'
 import Image from 'next/image'
 import { Title } from './title'
 import { DialogTitle } from '@radix-ui/react-dialog'
+import { useCart } from '@/hooks'
 
 interface Props {
   className?: string
   children: React.ReactNode
 }
 export function CartDrawer({ children }: Props) {
-  const {
-    totalAmount,
-    updateItemQuantity,
-    items,
-    removeCartItem,
-    fetchCartItems,
-    loading,
-  } = useCartStore()
+  const { items, totalAmount, loading, updateItemQuantity, removeCartItem } =
+    useCart()
   const [redirecting, setRedirecting] = useState(false)
-  useEffect(() => {
-    fetchCartItems()
-  }, [fetchCartItems])
 
   return (
     <Sheet>
@@ -67,15 +57,11 @@ export function CartDrawer({ children }: Props) {
                   key={item.id}
                   id={item.id}
                   imageUrl={item.imageUrl}
-                  details={
-                    item.pizzaSize && item.pizzaType
-                      ? getCartItemDetails(
-                          item.ingredients,
-                          item.pizzaSize as PizzaSize,
-                          item.pizzaType as PizzaType
-                        )
-                      : ''
-                  }
+                  details={getCartItemDetails(
+                    item.ingredients,
+                    item.pizzaSize as PizzaSize,
+                    item.pizzaType as PizzaType
+                  )}
                   disabled={item.disabled}
                   name={item.name}
                   price={item.price}

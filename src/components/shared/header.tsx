@@ -7,8 +7,14 @@ import Link from 'next/link'
 
 interface headerProps {
   className?: string
+  hasSearch?: boolean
+  hasCart?: boolean
 }
-export function Header({ className }: headerProps) {
+export function Header({
+  className,
+  hasSearch = true,
+  hasCart = true,
+}: headerProps) {
   return (
     <header className={cn('border-b-[1px]', className)}>
       <Container className="flex items-center justify-between py-8">
@@ -29,9 +35,11 @@ export function Header({ className }: headerProps) {
           </div>
         </Link>
 
-        <div className=" mx-10 flex-1">
-          <SearchInput />
-        </div>
+        {hasSearch && (
+          <div className="mx-10 flex-1">
+            <SearchInput />
+          </div>
+        )}
 
         {/* Правая часть */}
         <section className="flex items-center gap-3">
@@ -39,8 +47,7 @@ export function Header({ className }: headerProps) {
             <User size={16} />
             Войти
           </Button>
-
-          <CartButton />
+          {hasCart && <CartButton />}
         </section>
       </Container>
     </header>
