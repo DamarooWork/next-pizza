@@ -24,8 +24,8 @@ export function ChooseProductForm({
   description,
 }: Props) {
   return (
-    <section className={cn('flex flex-1', className)}>
-      <div className="flex items-center justify-center relative w-full">
+    <section className={cn('flex flex-1 justify-around', className)}>
+      <div className="flex items-center justify-center  relative ">
         <Image
           src={imageUrl}
           alt={name}

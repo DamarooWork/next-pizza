@@ -49,8 +49,15 @@ export default function ProductCard({
           className="mb-1 mt-3 font-bold line-clamp-1"
         />
         <p className="text-sm text-gray-400 line-clamp-3">
-          {ingredients.map((ingredient) => ingredient.name).join(', ')}
-        </p> 
+          {ingredients
+            .map((ingredient, i) => {
+              if (i === 0) {
+                return ingredient.name
+              }
+              return ingredient.name.toLowerCase()
+            })
+            .join(', ')}
+        </p>
       </div>
 
       <div className="flex justify-between items-center mt-4">
