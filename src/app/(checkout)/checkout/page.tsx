@@ -12,10 +12,13 @@ import {
 } from '@/components/shared'
 import { useCart } from '@/hooks'
 import toast from 'react-hot-toast'
+import { createOrder } from '@/actions'
+import { useState } from 'react'
 
 export default function CheckoutPage() {
   const { items, totalAmount, loading, updateItemQuantity, removeCartItem } =
     useCart()
+  const [submitting, setSubmitting] = useState(false)
 
   const form = useForm<CheckoutFormValues>({
     resolver: zodResolver(CheckoutFormSchema),
@@ -33,23 +36,32 @@ export default function CheckoutPage() {
     const cleanedPhone = phone.replace(/[\s\-()]/g, '')
 
     // Проверяем, что номер начинается с +7 или 8 и содержит 11 цифр в общей сложности
-    const phoneRegex = /^(\+7|8)\d{10}$/
+    const phoneRegex = /^(\+7|7|8)\d{10}$/
 
     return phoneRegex.test(cleanedPhone)
   }
-  const onSubmit: SubmitHandler<CheckoutFormValues> = (data) => {
-    if(items.length === 0){
-      toast.error('В корзине нет товаров для оформления заказа')
-      return
+  const onSubmit: SubmitHandler<CheckoutFormValues> = async (data) => {
+    try {
+      setSubmitting(true)
+      if (items.length === 0) {
+        toast.error('В корзине нет товаров для оформления заказа')
+        return
+      }
+      if (!validatePhone(data.phone)) {
+        toast.error('Пожалуйста, введите корректный номер телефона')
+        return
+      }
+      const url = await createOrder(data)
+      toast.success('Заказ оформлен успешно')
+      if (url) {
+        location.href = url
+      }
+    } catch (error) {
+      console.error(error)
+      toast.error('Не удалось оформить заказ. Пожалуйста, попробуйте еще раз.')
+    } finally {
+      setSubmitting(false)
     }
-    if (!validatePhone(data.phone)) {
-      toast.error(
-        'Пожалуйста, введите корректный номер телефона в формате +79876543210 или 89876543210'
-      )
-      return
-    }
-
-    console.log(data)
   }
 
   return (
@@ -79,7 +91,10 @@ export default function CheckoutPage() {
               />
             </div>
             {/* Правая часть */}
-            <CheckoutSidebar loading={loading} totalAmount={totalAmount} />
+            <CheckoutSidebar
+              loading={loading || submitting}
+              totalAmount={totalAmount}
+            />
           </div>
         </form>
       </FormProvider>

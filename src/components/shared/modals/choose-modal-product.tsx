@@ -1,9 +1,15 @@
 'use client'
-import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+} from '@/components/ui/dialog'
 import { Prisma } from '@prisma/client'
 import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 import { ProductForm } from '@/components/shared'
+import { useCart } from '@/hooks'
 
 const ProductSelect = {
   id: true,
@@ -21,8 +27,11 @@ interface Props {
 }
 export function ChooseModalProduct({ product, className }: Props) {
   const router = useRouter()
+  const { loading } = useCart()
   const routerBack = () => {
-    router.back()
+    if (!loading) {
+      router.back()
+    }
   }
 
   return (
@@ -34,6 +43,9 @@ export function ChooseModalProduct({ product, className }: Props) {
         )}
       >
         <DialogTitle className="hidden">{product.name}</DialogTitle>
+        <DialogDescription className="hidden">
+          {product.description}
+        </DialogDescription>
         <ProductForm product={product} onSubmit={routerBack} />
       </DialogContent>
     </Dialog>
