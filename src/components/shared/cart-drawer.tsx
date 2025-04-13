@@ -20,6 +20,7 @@ import Image from 'next/image'
 import { Title } from './title'
 import { DialogTitle } from '@radix-ui/react-dialog'
 import { useCart } from '@/hooks'
+import { EmptyCartPlaceholder } from './empty-cart-placeholder'
 
 interface Props {
   className?: string
@@ -102,22 +103,9 @@ export function CartDrawer({ children }: Props) {
         ) : (
           <div className="flex flex-col justify-between items-center my-auto">
             <DialogTitle className="hidden">Корзина пустая</DialogTitle>
-            <Image
-              src="/assets/images/empty-box.png"
-              alt="Корзина"
-              width={150}
-              height={150}
-            />
-            <Title
-              size="md"
-              text="Корзина пустая"
-              className="text-center font-bold my-2"
-            />
-            <p className="text-center text-neutral-500 mb-5 px-4">
-              Добавьте хотя бы одну пиццу, чтобы совершить заказ
-            </p>
+            <EmptyCartPlaceholder/>
 
-            <SheetClose>
+            <SheetClose asChild>
               <Button className="w-56 h-12 text-base" size="lg">
                 <ArrowLeft className="w-5 mr-2" />
                 Вернуться назад

@@ -1,22 +1,56 @@
 'use client'
+import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import {
-  CheckoutItem,
-  CheckoutItemDetails,
+  CheckoutAddressForm,
+  CheckoutCart,
+  CheckoutFormSchema,
+  CheckoutFormValues,
+  CheckoutPersonalForm,
   CheckoutSidebar,
   Title,
-  WhiteBlock,
 } from '@/components/shared'
-import { Button, Skeleton, Textarea } from '@/components/ui'
-import { Input } from '@/components/ui/input'
-import { getCartItemDetails } from '@/lib/get-cart-item-details'
-import { PizzaSize } from '@/lib/constants'
-import { PizzaType } from '@/lib/constants'
-import { ArrowRight, Package, Percent, Truck } from 'lucide-react'
 import { useCart } from '@/hooks'
+import toast from 'react-hot-toast'
 
 export default function CheckoutPage() {
   const { items, totalAmount, loading, updateItemQuantity, removeCartItem } =
     useCart()
+
+  const form = useForm<CheckoutFormValues>({
+    resolver: zodResolver(CheckoutFormSchema),
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      phone: '',
+      address: '',
+      comment: '',
+    },
+  })
+  const validatePhone = (phone: string): boolean => {
+    // Сначала удаляем все пробелы, скобки и тире из номера
+    const cleanedPhone = phone.replace(/[\s\-()]/g, '')
+
+    // Проверяем, что номер начинается с +7 или 8 и содержит 11 цифр в общей сложности
+    const phoneRegex = /^(\+7|8)\d{10}$/
+
+    return phoneRegex.test(cleanedPhone)
+  }
+  const onSubmit: SubmitHandler<CheckoutFormValues> = (data) => {
+    if(items.length === 0){
+      toast.error('В корзине нет товаров для оформления заказа')
+      return
+    }
+    if (!validatePhone(data.phone)) {
+      toast.error(
+        'Пожалуйста, введите корректный номер телефона в формате +79876543210 или 89876543210'
+      )
+      return
+    }
+
+    console.log(data)
+  }
 
   return (
     <section>
@@ -25,75 +59,30 @@ export default function CheckoutPage() {
         size="xl"
         className="font-extrabold mb-8"
       />
-      <div className="flex gap-10">
-        {/* Левая часть */}
-        <div className="flex flex-col gap-8 flex-1 mb-20">
-          <WhiteBlock title="1. Корзина">
-            <div className="flex flex-col gap-5">
-              {items.map((item) => (
-                <CheckoutItem
-                  key={item.id}
-                  id={item.id}
-                  imageUrl={item.imageUrl}
-                  name={item.name}
-                  price={item.price}
-                  quantity={item.quantity}
-                  details={getCartItemDetails(
-                    item.ingredients,
-                    item.pizzaSize as PizzaSize,
-                    item.pizzaType as PizzaType
-                  )}
-                  disabled={item.disabled}
-                  onClickCountButton={(type) =>
-                    updateItemQuantity(
-                      item.id,
-                      type === 'plus' ? item.quantity + 1 : item.quantity - 1
-                    )
-                  }
-                  onClickRemove={() => removeCartItem(item.id)}
-                />
-              ))}
-              <span className="text-xl">Итого:</span>
-              {loading ? (
-                <Skeleton className="h-11 w-48" />
-              ) : (
-                <span className="h-11 text-[34px] font-extrabold">
-                  {totalAmount} ₽
-                </span>
-              )}
-            </div>
-          </WhiteBlock>
-          <WhiteBlock title="2. Персональные данные">
-            <div className="grid grid-cols-2 gap-5">
-              <Input name="firstName" className="text-base" placeholder="Имя" />
-              <Input
-                name="lastName"
-                className="text-base"
-                placeholder="Фамилия"
+      <FormProvider {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="flex gap-10">
+            {/* Левая часть */}
+            <div className="flex flex-col gap-8 flex-1 mb-20">
+              <CheckoutCart
+                items={items}
+                totalAmount={totalAmount}
+                loading={loading}
+                updateItemQuantity={updateItemQuantity}
+                removeCartItem={removeCartItem}
               />
-              <Input name="email" className="text-base" placeholder="Email" />
-              <Input name="phone" className="text-base" placeholder="Телефон" />
-            </div>
-          </WhiteBlock>
-          <WhiteBlock title="3. Адрес доставки">
-            <div className="flex flex-col gap-5">
-              <Input
-                name="firstName"
-                className="text-base"
-                placeholder="Адрес доставки"
+              <CheckoutPersonalForm
+                className={loading ? 'opacity-40 pointer-events-none' : ''}
               />
-              <Textarea
-                rows={5}
-                name="lastName"
-                className="text-base"
-                placeholder="Комментарий к заказу"
+              <CheckoutAddressForm
+                className={loading ? 'opacity-40 pointer-events-none' : ''}
               />
             </div>
-          </WhiteBlock>
-        </div>
-        {/* Правая часть */}
-        <CheckoutSidebar loading={loading} totalAmount={totalAmount} />
-      </div>
+            {/* Правая часть */}
+            <CheckoutSidebar loading={loading} totalAmount={totalAmount} />
+          </div>
+        </form>
+      </FormProvider>
     </section>
   )
 }

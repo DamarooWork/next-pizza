@@ -1,5 +1,6 @@
 import { WhiteBlock, CheckoutItemDetails } from '@/components/shared'
 import { Button, Skeleton } from '@/components/ui'
+import { DELIVERY_PRICE, VAT } from '@/lib'
 import { cn } from '@/lib/utils'
 import { ArrowRight, Package, Percent, Truck } from 'lucide-react'
 
@@ -8,13 +9,8 @@ interface Props {
   loading: boolean
   totalAmount: number
 }
-const VAT = 15
-const DELIVERY_PRICE = 250
-export function CheckoutSidebar({
-  className,
-  loading,
-  totalAmount,
-}: Props) {
+
+export function CheckoutSidebar({ className, loading, totalAmount }: Props) {
   const vatPrice = (totalAmount * VAT) / 100
   const totalPrice = totalAmount + vatPrice + DELIVERY_PRICE
   return (
