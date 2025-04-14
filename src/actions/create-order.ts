@@ -4,7 +4,7 @@ import { CheckoutFormValues, PayOrderTemplate } from '@/components/shared'
 import { prisma } from '@/lib/prisma'
 import { OrderStatus } from '@prisma/client'
 import { cookies } from 'next/headers'
-import { CreatePayment, getTotalAndVatPrice, SendEmailPayOrder } from '@/lib'
+import { CreatePayment, getTotalAndVatPrice, sendEmail } from '@/lib'
 export async function createOrder(data: CheckoutFormValues) {
   try {
     const cookieStore = await cookies()
@@ -78,7 +78,7 @@ export async function createOrder(data: CheckoutFormValues) {
     })
     const paymentUrl = paymentData.confirmation.confirmation_url
     // Отправляем email с параметрами платежа
-    const info = await SendEmailPayOrder({
+    const info = await sendEmail({
       subject: `Оплата  заказа #${order.id} на сумму ${totalPrice} ₽`,
       emailTo: data.email,
       ReactNode: PayOrderTemplate({

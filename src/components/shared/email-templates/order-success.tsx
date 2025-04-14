@@ -24,13 +24,14 @@ export function OrderSuccessTemplate({
     >
       <h1>Спасибо за ваш заказ! 🎉</h1>
       <p>Ваш заказ #{orderId} успешно оплачен и принят в обработку.</p>
+      <hr/>
       <p>Список товаров:</p>
       <ul>
         {items.map((item) => (
           <li key={item.id}>
             <strong>{item.productItem.product.name}</strong> |{' '}
-            {item.productItem.price} × {item.quantity} шт. ={' '}
-            {item.productItem.price * item.quantity}
+            {item.productItem.price}  × {item.quantity} шт. ={' '}
+            {item.productItem.price * item.quantity} руб. 
           </li>
         ))}
       </ul>

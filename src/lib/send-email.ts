@@ -5,13 +5,8 @@ interface Props {
   subject: string
   emailTo: string
   ReactNode: React.ReactNode
-  className?: string
 }
-export async function SendEmailPayOrder({
-  ReactNode,
-  subject,
-  emailTo,
-}: Props) {
+export async function sendEmail({ ReactNode, subject, emailTo }: Props) {
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_SERVER_HOST,
     port: Number(process.env.EMAIL_SERVER_PORT),

@@ -1,8 +1,10 @@
 import { PaymentCallbackData } from '@/types'
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import {  OrderStatus } from '@prisma/client'
+import { OrderStatus } from '@prisma/client'
 import { CartItemDTO } from '@/services/dto/cart.dto'
+import { getTotalAndVatPrice, sendEmail } from '@/lib'
+import { OrderSuccessTemplate } from '@/components/shared'
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,19 +19,31 @@ export async function POST(req: NextRequest) {
     if (!order) {
       return NextResponse.json({ error: 'Order not found' }, { status: 404 })
     }
-
-    if (body.type === 'payment.succeeded') {
-      await prisma.order.update({
-        where: {
-          id: order.id,
-        },
-        data: {
-          status: OrderStatus.SUCCESSED,
-        },
-      })
-     
-    }
     const items = order.items as unknown as CartItemDTO[]
+    const isSuccess = body.type === 'payment.succeeded'
+    await prisma.order.update({
+      where: {
+        id: order.id,
+      },
+      data: {
+        status: isSuccess ? OrderStatus.SUCCESSED : OrderStatus.CANCELLED,
+      },
+    })
+
+    if (isSuccess) {
+      const totalPrice = getTotalAndVatPrice(order.totalAmount)
+
+      const info = await sendEmail({
+        subject: 'Next Pizza / Ваш заказ успешно оформлен 🎉',
+        emailTo: order.email,
+        ReactNode: OrderSuccessTemplate({
+          orderId: order.id,
+          items,
+          address: order.address,
+          phone: order.phone,
+        }),
+      })
+    }
 
     return NextResponse.json({ success: true }, { status: 200 })
   } catch (error) {
@@ -39,5 +53,4 @@ export async function POST(req: NextRequest) {
       { status: 500 }
     )
   }
-  return
 }
