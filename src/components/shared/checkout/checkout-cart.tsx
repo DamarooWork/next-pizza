@@ -1,3 +1,5 @@
+'use client'
+
 import { EmptyCartPlaceholder, WhiteBlock } from '@/components/shared'
 import { CheckoutItem } from '@/components/shared'
 import { getCartItemDetails } from '@/lib/get-cart-item-details'

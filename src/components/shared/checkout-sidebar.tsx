@@ -1,3 +1,5 @@
+'use client'
+
 import { WhiteBlock, CheckoutItemDetails } from '@/components/shared'
 import { Button, Skeleton } from '@/components/ui'
 import { DELIVERY_PRICE, getTotalAndVatPrice } from '@/lib'
@@ -11,8 +13,8 @@ interface Props {
 }
 
 export function CheckoutSidebar({ className, loading, totalAmount }: Props) {
-  const {totalPrice, vatPrice} = getTotalAndVatPrice(totalAmount)
-  return (  
+  const { totalPrice, vatPrice } = getTotalAndVatPrice(totalAmount)
+  return (
     <WhiteBlock className={cn('p-6 sticky top-6 w-[450px] h-fit', className)}>
       <div className="flex flex-col gap-1">
         <span className="text-xl">Итого:</span>
