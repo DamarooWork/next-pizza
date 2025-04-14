@@ -1,23 +1,18 @@
-import { DELIVERY_PRICE } from '@/lib'
+import { DELIVERY_PRICE, VAT } from '@/lib'
 import { cn } from '@/lib/utils'
 import { CartItemDTO } from '@/services/dto/cart.dto'
+import { Order } from '@prisma/client'
 
 interface Props {
-  orderId: number
+  order: Order
   items: CartItemDTO[]
-  address: string
-  phone: string
-  totalPrice: number
-  vatPrice: number
+
   className?: string
 }
 export function OrderSuccessTemplate({
-  orderId,
+  order,
   items,
-  address,
-  phone,
-  totalPrice,
-  vatPrice,
+
   className,
 }: Props) {
   return (
@@ -29,8 +24,8 @@ export function OrderSuccessTemplate({
     >
       <h1>Спасибо за ваш заказ! 🎉</h1>
       <p>
-        Ваш заказ #{orderId} на сумму {totalPrice} руб. успешно оплачен и принят
-        в обработку.
+        Ваш заказ #{order.id} на сумму {order.totalAmount} руб. успешно оплачен
+        и принят в обработку.
       </p>
       <hr />
       <h2>Список товаров:</h2>
@@ -52,23 +47,28 @@ export function OrderSuccessTemplate({
           </li>
         ))}
         <li>
-          <strong>Налог:</strong> {vatPrice} руб.
+          <strong>Налог:</strong> {+((order.totalAmount * 100) / VAT)} руб.
         </li>
         <li>
           <strong>Доставка:</strong> {DELIVERY_PRICE} руб.
         </li>
       </ul>
       <p>
-        Итого: <strong>{totalPrice}</strong> руб.
+        Итого: <strong>{order.totalAmount}</strong> руб.
       </p>
       <h3>Детали заказа:</h3>
       <ul>
         <li>
-          <strong>Адрес:</strong> {address}
+          <strong>Адрес:</strong> {order.address}
         </li>
         <li>
-          <strong>Телефон:</strong> {phone}
+          <strong>Телефон:</strong> {order.phone}
         </li>
+        {order.comment && (
+          <li>
+            <strong>Комментарий:</strong> {order.comment}
+          </li>
+        )}
       </ul>
 
       <p>
@@ -79,8 +79,7 @@ export function OrderSuccessTemplate({
         style={{
           width: '320px',
           height: '320px',
-          marginLeft: 'auto',
-          marginRight: 'auto',
+          borderRadius: '16px',
         }}
         src="https://i.pinimg.com/736x/0f/9a/ff/0f9aff5fc8a976ef0f4a1babc5a1a27c.jpg"
         alt="Котик"

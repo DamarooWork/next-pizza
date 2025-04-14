@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { OrderStatus } from '@prisma/client'
 import { CartItemDTO } from '@/services/dto/cart.dto'
-import { getTotalAndVatPrice, sendEmail } from '@/lib'
+import { getTotalAndVatPrice, sendEmail, VAT } from '@/lib'
 import { OrderSuccessTemplate } from '@/components/shared'
 
 export async function POST(req: NextRequest) {
@@ -23,7 +23,6 @@ export async function POST(req: NextRequest) {
     const isSuccess = body.object.status === 'succeeded'
     // В случае успешной оплаты меняем статус заказа и отправляем email с параметрами заказа
     if (isSuccess) {
-      const { totalPrice, vatPrice } = getTotalAndVatPrice(order.totalAmount)
       await prisma.order.update({
         where: {
           id: order.id,
@@ -40,12 +39,9 @@ export async function POST(req: NextRequest) {
         subject: 'Next Pizza by Damaroo / Ваш заказ успешно оформлен 🎉',
         emailTo: order.email,
         ReactNode: OrderSuccessTemplate({
-          orderId: order.id,
+          order,
           items,
-          totalPrice,
-          vatPrice,
-          address: order.address,
-          phone: order.phone,
+          
         }),
       })
     } else {
