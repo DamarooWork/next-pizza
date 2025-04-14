@@ -7,6 +7,7 @@ import { useFormContext } from 'react-hook-form'
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   name: string
   label?: string
+  requiredInput?: boolean
   className?: string
   ref?: React.Ref<HTMLInputElement>
 }
@@ -15,6 +16,7 @@ export function FormInput({
   name,
   label,
   ref,
+  requiredInput = false,
   ...props
 }: Props) {
   const {
@@ -30,7 +32,7 @@ export function FormInput({
     <section className={className}>
       {label && (
         <p className="font-medium mb-2">
-          {label} {props.required && <RequiredSymbol />}
+          {label} {(props.required || requiredInput) && <RequiredSymbol />}
         </p>
       )}
       <div className="relative">

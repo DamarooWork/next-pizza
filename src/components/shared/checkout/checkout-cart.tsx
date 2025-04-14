@@ -59,14 +59,6 @@ export function CheckoutCart({
             />
           ))
         )}
-        {/* <span className="text-xl">Итого:</span>
-        {loading ? (
-          <Skeleton className="h-11 w-48" />
-        ) : (
-          <span className="h-11 text-[34px] font-extrabold">
-            {totalAmount} ₽
-          </span>
-        )} */}
       </div>
     </WhiteBlock>
   )

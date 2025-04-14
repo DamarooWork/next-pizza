@@ -5,6 +5,7 @@ import {
   CartButton,
   HeaderLogo,
   ProfileButton,
+  AuthModal,
 } from '@/components/shared'
 
 import { Suspense } from 'react'
@@ -35,6 +36,7 @@ export function Header({
 
         {/* Правая часть */}
         <section className="flex items-center gap-3">
+          
          <ProfileButton/>
           {hasCart && <CartButton />}
         </section>

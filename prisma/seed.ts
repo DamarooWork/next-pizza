@@ -70,7 +70,8 @@ async function up() {
       ingredients: {
         connect: _ingredients.slice(0, 5),
       },
-      description: 'Вкусная и сытная пицца с пепперони и сыром в печи',
+      description:
+        'Пикантная пепперони , увеличенная порция моцареллы, томаты , фирменный томатный соус',
     },
   })
 
@@ -83,7 +84,8 @@ async function up() {
       ingredients: {
         connect: _ingredients.slice(5, 10),
       },
-      description: 'Вкусная и сытная пицца с сыром и грибами',
+      description:
+        'Острые колбаски чоризо , сладкий перец , моцарелла, фирменный томатный соус',
     },
   })
 
@@ -97,6 +99,57 @@ async function up() {
         connect: _ingredients.slice(10, 40),
       },
       description: 'Вкусная и сытная пицца с черизо и сыром в печи',
+    },
+  })
+  const pizza4 = await prisma.product.create({
+    data: {
+      name: 'Гавайская',
+      imageUrl:
+        'https://media.dodostatic.net/image/r:584x584/11ee7d617ef504b8b95c614b0eeaaafb.avif',
+      categoryId: 1,
+      ingredients: {
+        connect: _ingredients.slice(2, 8),
+      },
+      description: 'Цыпленок , ананасы , моцарелла, фирменный соус альфредо',
+    },
+  })
+  const pizza5 = await prisma.product.create({
+    data: {
+      name: 'Цыпленок барбекю',
+      imageUrl:
+        'https://media.dodostatic.net/image/r:584x584/11ee7d61106c12ff8350c8d5d40e9309.avif',
+      categoryId: 1,
+      ingredients: {
+        connect: _ingredients.slice(4, 8),
+      },
+      description:
+        'Цыпленок , бекон , соус барбекю, красный лук , моцарелла, фирменный томатный соус',
+    },
+  })
+  const pizza6 = await prisma.product.create({
+    data: {
+      name: 'Креветки со сладким чили',
+      imageUrl:
+        'https://media.dodostatic.net/image/r:584x584/0194d4fd4ba4798887defbdb3bc48750.avif',
+      categoryId: 1,
+      ingredients: {
+        connect: _ingredients.slice(6, 8),
+      },
+      description:
+        'Креветки , ананасы , соус сладкий чили, сладкий перец , моцарелла, фирменный соус альфредо',
+    },
+  })
+  const pizza7 = await prisma.product.create({
+    data: {
+      name: 'Мясной микс с говядиной и колбасками',
+      imageUrl:
+        'https://media.dodostatic.net/image/r:584x584/0194d4f6b569714c81b4699dcda65116.avif',
+      categoryId: 1,
+      ingredients: {
+        connect: _ingredients.slice(1, 10),
+      },
+      description:
+        'Пряная говядина, баварские колбаски, пикантная пепперони, бекон, моцарелла и фирменный томатный соус',
     },
   })
 
@@ -119,6 +172,35 @@ async function up() {
       generateProductItem({ productId: pizza3.id, pizzaType: 1, size: 20 }),
       generateProductItem({ productId: pizza3.id, pizzaType: 2, size: 30 }),
       generateProductItem({ productId: pizza3.id, pizzaType: 2, size: 40 }),
+
+      // Пицца "Гавайская"
+      generateProductItem({ productId: pizza4.id, pizzaType: 1, size: 20 }),
+      generateProductItem({ productId: pizza4.id, pizzaType: 1, size: 30 }),
+      generateProductItem({ productId: pizza4.id, pizzaType: 1, size: 40 }),
+      generateProductItem({ productId: pizza4.id, pizzaType: 2, size: 20 }),
+      generateProductItem({ productId: pizza4.id, pizzaType: 2, size: 30 }),
+      generateProductItem({ productId: pizza4.id, pizzaType: 2, size: 40 }),
+      // Пицца "Цыпленок барбекю"
+      generateProductItem({ productId: pizza5.id, pizzaType: 1, size: 20 }),
+      generateProductItem({ productId: pizza5.id, pizzaType: 1, size: 30 }),
+      generateProductItem({ productId: pizza5.id, pizzaType: 1, size: 40 }),
+      generateProductItem({ productId: pizza5.id, pizzaType: 2, size: 20 }),
+      generateProductItem({ productId: pizza5.id, pizzaType: 2, size: 30 }),
+      generateProductItem({ productId: pizza5.id, pizzaType: 2, size: 40 }),
+      // Пицца "Креветки со сладким чили"
+      generateProductItem({ productId: pizza6.id, pizzaType: 1, size: 20 }),
+      generateProductItem({ productId: pizza6.id, pizzaType: 1, size: 30 }),
+      generateProductItem({ productId: pizza6.id, pizzaType: 1, size: 40 }),
+      generateProductItem({ productId: pizza6.id, pizzaType: 2, size: 20 }),
+      generateProductItem({ productId: pizza6.id, pizzaType: 2, size: 30 }),
+      generateProductItem({ productId: pizza6.id, pizzaType: 2, size: 40 }),
+      // Пицца "Мясной микс с говядиной и колбасками"
+      generateProductItem({ productId: pizza7.id, pizzaType: 1, size: 20 }),
+      generateProductItem({ productId: pizza7.id, pizzaType: 1, size: 30 }),
+      generateProductItem({ productId: pizza7.id, pizzaType: 1, size: 40 }),
+      generateProductItem({ productId: pizza7.id, pizzaType: 2, size: 20 }),
+      generateProductItem({ productId: pizza7.id, pizzaType: 2, size: 30 }),
+      generateProductItem({ productId: pizza7.id, pizzaType: 2, size: 40 }),
 
       // Остальные продукты
       generateProductItem({ productId: 1 }),

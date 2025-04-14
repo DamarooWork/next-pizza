@@ -20,6 +20,10 @@ export function CheckoutAddressForm({ className }: Props) {
           name="address"
           render={({ field, fieldState }) => (
             <div className="relative">
+              <p className="font-medium mb-2">
+                {'Адрес '}
+                <span className="text-red-500">*</span>
+              </p>
               <AddressInput {...field} />
               {fieldState.error?.message && (
                 <ErrorText text={fieldState.error.message} className="mt-2" />
@@ -30,6 +34,7 @@ export function CheckoutAddressForm({ className }: Props) {
 
         <FormTextarea
           rows={5}
+          label="Комментарий"
           name="comment"
           className="text-base"
           placeholder="Комментарий к заказу"

@@ -40,7 +40,6 @@ export default function ProductCard({
             alt={name}
             width={215}
             height={215}
-            sizes="215px"
           />
         </div>
         <Title

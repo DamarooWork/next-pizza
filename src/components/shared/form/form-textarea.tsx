@@ -9,6 +9,7 @@ interface Props extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   className?: string
   name: string
   label?: string
+  requiredTextarea?: boolean
   required?: boolean
 }
 
@@ -17,6 +18,7 @@ export const FormTextarea: React.FC<Props> = ({
   name,
   label,
   required,
+  requiredTextarea = false,
   ...props
 }) => {
   const {
@@ -32,7 +34,10 @@ export const FormTextarea: React.FC<Props> = ({
   return (
     <div className={className}>
       <p className="font-medium mb-2">
-        {label} {required && <span className="text-red-500">*</span>}
+        {label}{' '}
+        {(required || requiredTextarea) && (
+          <span className="text-red-500">*</span>
+        )}
       </p>
 
       <div className="relative">
