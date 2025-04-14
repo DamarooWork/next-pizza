@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     const isSuccess = body.object.status === 'succeeded'
     // В случае успешной оплаты меняем статус заказа и отправляем email с параметрами заказа
     if (isSuccess) {
-      const { totalPrice } = getTotalAndVatPrice(order.totalAmount)
+      const { totalPrice, vatPrice } = getTotalAndVatPrice(order.totalAmount)
       await prisma.order.update({
         where: {
           id: order.id,
@@ -43,6 +43,7 @@ export async function POST(req: NextRequest) {
           orderId: order.id,
           items,
           totalPrice,
+          vatPrice,
           address: order.address,
           phone: order.phone,
         }),
