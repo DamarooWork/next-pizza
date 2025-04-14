@@ -11,27 +11,28 @@ export { ChooseProductForm } from './choose-product-form'
 export { ChoosePizzaForm } from './choose-pizza-form'
 export { ProductsGroupList } from './products-group-list'
 export { GroupVariants } from './group-variants'
-export { IngredientItem } from './ingredient-item';
-export { CartButton } from './cart-button';
-export { CartDrawer } from './cart-drawer';
-export { CartDrawerItem } from './cart-drawer-item';
-export { CountButton } from './count-button';
-export { CountIconButton } from './count-icon-button';
-export { ProductForm } from './product-form';
-export { WhiteBlock } from './white-block';
-export { CheckoutItemDetails } from './checkout-item-details';
-export { CheckoutItem } from './checkout-item';
-export { CheckoutSidebar } from './checkout-sidebar';
-export { ErrorText } from './error-text';
-export { RequiredSymbol } from './required-symbol';
-export { ClearButton } from './clear-button';
-export { EmptyCartPlaceholder } from './empty-cart-placeholder';
-export {HeaderLogo} from './header-logo'
-// export { ProfileButton } from './profile-button';
+export { IngredientItem } from './ingredient-item'
+export { CartButton } from './cart-button'
+export { CartDrawer } from './cart-drawer'
+export { CartDrawerItem } from './cart-drawer-item'
+export { CountButton } from './count-button'
+export { CountIconButton } from './count-icon-button'
+export { ProductForm } from './product-form'
+export { WhiteBlock } from './white-block'
+export { CheckoutItemDetails } from './checkout-item-details'
+export { CheckoutItem } from './checkout-item'
+export { CheckoutSidebar } from './checkout-sidebar'
+export { ErrorText } from './error-text'
+export { RequiredSymbol } from './required-symbol'
+export { ClearButton } from './clear-button'
+export { EmptyCartPlaceholder } from './empty-cart-placeholder'
+export { HeaderLogo } from './header-logo'
+export { Providers } from './providers'
+export { ProfileButton } from './profile-button'
 // export { InfoBlock } from './info-block';
 // export { ProfileForm } from './profile-form';
 // export { Stories } from './stories';
-export * from './email-templates';
-export * from './checkout';
-export * from './form';
+export * from './email-templates'
+export * from './checkout'
+export * from './form'
 export * from './modals'

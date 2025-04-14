@@ -4,9 +4,9 @@ import {
   SearchInput,
   CartButton,
   HeaderLogo,
+  ProfileButton,
 } from '@/components/shared'
-import { Button } from '@/components/ui'
-import { User } from 'lucide-react'
+
 import { Suspense } from 'react'
 
 interface headerProps {
@@ -35,10 +35,7 @@ export function Header({
 
         {/* Правая часть */}
         <section className="flex items-center gap-3">
-          <Button className="flex items-center gap-1 " variant={'outline'}>
-            <User size={16} />
-            Войти
-          </Button>
+         <ProfileButton/>
           {hasCart && <CartButton />}
         </section>
       </Container>
