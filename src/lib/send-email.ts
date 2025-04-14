@@ -15,14 +15,14 @@ export async function sendEmail({ ReactNode, subject, emailTo }: Props) {
       user: process.env.EMAIL_SERVER_USER,
       pass: process.env.EMAIL_SERVER_PASSWORD,
     },
-    debug: true, // Включаем отладку
+    debug: true
   })
-  const ReactDOMServer = (await import('react-dom/server')).default
+  const {renderToStaticMarkup} = (await import('react-dom/server')).default
   const mailOptions = {
     from: `"Next pizza by Damaroo" <${process.env.EMAIL_FROM}>`,
     to: emailTo,
     subject,
-    html: ReactDOMServer.renderToStaticMarkup(ReactNode),
+    html: renderToStaticMarkup(ReactNode),
   }
   const info = await transporter.sendMail(mailOptions)
   return info

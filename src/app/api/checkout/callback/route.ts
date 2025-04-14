@@ -9,32 +9,35 @@ import { OrderSuccessTemplate } from '@/components/shared'
 export async function POST(req: NextRequest) {
   try {
     const body = (await req.json()) as PaymentCallbackData
-
+    // Находим заказ по id из ответа YOOKASSA
     const order = await prisma.order.findFirst({
       where: {
         id: +body.object.metadata.order_id,
       },
     })
-
+    // Если нет заказа, то возвращаем ошибку
     if (!order) {
       return NextResponse.json({ error: 'Order not found' }, { status: 404 })
     }
-    const items = order.items as unknown as CartItemDTO[]
+    // Проверяем статус оплаты
     const isSuccess = body.object.status === 'succeeded'
-    await prisma.order.update({
-      where: {
-        id: order.id,
-      },
-      data: {
-        status: isSuccess ? OrderStatus.SUCCESSED : OrderStatus.CANCELLED,
-      },
-    })
-
+    // В случае успешной оплаты меняем статус заказа и отправляем email с параметрами заказа
     if (isSuccess) {
-      const {totalPrice} = getTotalAndVatPrice(order.totalAmount)
+      const { totalPrice } = getTotalAndVatPrice(order.totalAmount)
+      await prisma.order.update({
+        where: {
+          id: order.id,
+        },
+        data: {
+          status: OrderStatus.SUCCESSED,
+        },
+      })
+      const items = JSON.parse(
+        order.items as string
+      ) as unknown as CartItemDTO[]
 
-      const info = await sendEmail({
-        subject: 'Next Pizza / Ваш заказ успешно оформлен 🎉',
+      await sendEmail({
+        subject: 'Next Pizza by Damaroo / Ваш заказ успешно оформлен 🎉',
         emailTo: order.email,
         ReactNode: OrderSuccessTemplate({
           orderId: order.id,
@@ -43,6 +46,16 @@ export async function POST(req: NextRequest) {
           address: order.address,
           phone: order.phone,
         }),
+      })
+    } else {
+      // Если оплата не удалась, то меняем статус заказа на отмену
+      await prisma.order.update({
+        where: {
+          id: order.id,
+        },
+        data: {
+          status: OrderStatus.CANCELLED,
+        },
       })
     }
 
