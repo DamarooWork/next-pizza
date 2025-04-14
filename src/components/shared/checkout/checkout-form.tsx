@@ -14,7 +14,7 @@ import toast from 'react-hot-toast'
 import { createOrder } from '@/actions'
 import { useState } from 'react'
 
-export  function CheckoutForm() {
+export function CheckoutForm() {
   const { items, totalAmount, loading, updateItemQuantity, removeCartItem } =
     useCart()
   const [submitting, setSubmitting] = useState(false)

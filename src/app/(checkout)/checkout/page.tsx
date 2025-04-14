@@ -1,5 +1,9 @@
-import { CheckoutForm, Title } from '@/components/shared'
-
+import { Title } from '@/components/shared'
+import dynamic from 'next/dynamic'
+const CheckoutForm = dynamic(
+  () => import('@/components/shared').then((mod) => mod.CheckoutForm),
+  { ssr: false }
+)
 export default function CheckoutPage() {
   return (
     <section>
