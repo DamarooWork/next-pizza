@@ -33,23 +33,34 @@ export function OrderSuccessTemplate({
         в обработку.
       </p>
       <hr />
-      <h2>
-        <strong>Список товаров:</strong>
-      </h2>
+      <h2>Список товаров:</h2>
       <ul>
         {items.map((item) => (
           <li key={item.id}>
             <strong>{item.productItem.product.name}</strong> |{' '}
-            {item.productItem.price} × {item.quantity} шт. ={' '}
-            {item.productItem.price * item.quantity} руб.
+            {item.productItem.price} +{' '}
+            {item.ingredients.map((ing) => (
+              <span>
+                {ing.price}({ing.name})
+              </span>
+            ))}{' '}
+            × {item.quantity} шт. ={' '}
+            {(item.productItem.price +
+              item.ingredients.reduce((acc, ing) => acc + ing.price, 0)) *
+              item.quantity}{' '}
+            руб.
           </li>
         ))}
-        <li>Налог: {vatPrice} руб.</li>
-        <li>Доставка: {DELIVERY_PRICE} руб.</li>
+        <li>
+          <strong>Налог:</strong> {vatPrice} руб.
+        </li>
+        <li>
+          <strong>Доставка:</strong> {DELIVERY_PRICE} руб.
+        </li>
       </ul>
-      <h3>
+      <p>
         Итого: <strong>{totalPrice}</strong> руб.
-      </h3>
+      </p>
       <h3>Детали заказа:</h3>
       <ul>
         <li>
