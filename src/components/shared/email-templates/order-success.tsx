@@ -6,6 +6,7 @@ interface Props {
   items: CartItemDTO[]
   address: string
   phone: string
+  totalPrice: number
   className?: string
 }
 export function OrderSuccessTemplate({
@@ -13,6 +14,7 @@ export function OrderSuccessTemplate({
   items,
   address,
   phone,
+  totalPrice,
   className,
 }: Props) {
   return (
@@ -23,7 +25,7 @@ export function OrderSuccessTemplate({
       )}
     >
       <h1>Спасибо за ваш заказ! 🎉</h1>
-      <p>Ваш заказ #{orderId} успешно оплачен и принят в обработку.</p>
+      <p>Ваш заказ #{orderId} на сумму {totalPrice} руб. успешно оплачен и принят в обработку.</p>
       <hr/>
       <p>Список товаров:</p>
       <ul>
@@ -35,6 +37,7 @@ export function OrderSuccessTemplate({
           </li>
         ))}
       </ul>
+      <p>Итого: {totalPrice} руб.</p>
       <p>
         Детали заказа:
         <ul>

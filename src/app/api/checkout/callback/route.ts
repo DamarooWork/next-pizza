@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Order not found' }, { status: 404 })
     }
     const items = order.items as unknown as CartItemDTO[]
-    const isSuccess = body.type === 'payment.succeeded'
+    const isSuccess = body.object.status === 'succeeded'
     await prisma.order.update({
       where: {
         id: order.id,
@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
     })
 
     if (isSuccess) {
-      const totalPrice = getTotalAndVatPrice(order.totalAmount)
+      const {totalPrice} = getTotalAndVatPrice(order.totalAmount)
 
       const info = await sendEmail({
         subject: 'Next Pizza / Ваш заказ успешно оформлен 🎉',
@@ -39,6 +39,7 @@ export async function POST(req: NextRequest) {
         ReactNode: OrderSuccessTemplate({
           orderId: order.id,
           items,
+          totalPrice,
           address: order.address,
           phone: order.phone,
         }),
