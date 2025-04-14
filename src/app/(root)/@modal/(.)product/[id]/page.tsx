@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { prisma } from '@/../prisma'
+import { prisma } from '@/lib/prisma'
 import { ChooseModalProduct } from '@/components/shared'
 interface Props {
   params: {

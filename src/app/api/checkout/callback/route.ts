@@ -1,7 +1,7 @@
 import { PaymentCallbackData } from '@/types'
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '../../../../../prisma'
-import { Cart, OrderStatus } from '@prisma/client'
+import { prisma } from '@/lib/prisma'
+import {  OrderStatus } from '@prisma/client'
 import { CartItemDTO } from '@/services/dto/cart.dto'
 
 export async function POST(req: NextRequest) {

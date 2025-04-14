@@ -1,4 +1,4 @@
-import { prisma } from '@/../prisma'
+import { prisma } from '@/lib/prisma'
 import { updateCartTotalAmount } from '@/lib/update-cart-total-amount'
 import { NextRequest, NextResponse } from 'next/server'
 

@@ -1,7 +1,7 @@
 'use server'
 
 import { CheckoutFormValues, PayOrderTemplate } from '@/components/shared'
-import { prisma } from '../../prisma'
+import { prisma } from '@/lib/prisma'
 import { OrderStatus } from '@prisma/client'
 import { cookies } from 'next/headers'
 import { CreatePayment, getTotalAndVatPrice, SendEmailPayOrder } from '@/lib'
