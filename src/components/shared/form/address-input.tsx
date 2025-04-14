@@ -13,10 +13,7 @@ export const AddressInput: React.FC<Props> = ({ onChange }) => {
   return (
     <AddressSuggestions
       uid={id}
-      token={
-        process.env.ADDRESS_SUGGESTIONS_TOKEN as string ||
-        'b5b8bb983ddcd08648080e0271d9dd367bb7aa65'
-      }
+      token={process.env.ADDRESS_SUGGESTIONS_TOKEN as string}
       onChange={(data) => onChange(data?.value || '')}
     />
   )

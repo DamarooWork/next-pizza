@@ -1,6 +1,6 @@
 'use client'
 import { cn } from '@/lib/utils'
-import { Input } from '../ui'
+import { Input } from '@/components/ui'
 import { Search } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { useClickAway, useDebounce } from 'react-use'
