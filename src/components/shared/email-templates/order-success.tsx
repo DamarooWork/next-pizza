@@ -37,7 +37,7 @@ export function OrderSuccessTemplate({
             {item.productItem.price}{' '}
             {item.ingredients.length > 0 &&
               '+ ' +
-               `${item.ingredients.map((ing, i) => (
+                `${item.ingredients.map((ing, i) => (
                   <span>
                     {ing.price}({ing.name}) {i > 0 && '+'}
                   </span>
@@ -52,7 +52,8 @@ export function OrderSuccessTemplate({
         ))}
         <li>
           <strong>Налог:</strong>{' '}
-          {((order.totalAmount - DELIVERY_PRICE) / (1 + VAT / 100)).toFixed()}
+          {order.totalAmount -
+            +((order.totalAmount - DELIVERY_PRICE) / (1 + VAT / 100)).toFixed()}
         </li>
         <li>
           <strong>Доставка:</strong> {DELIVERY_PRICE} руб.
@@ -63,16 +64,19 @@ export function OrderSuccessTemplate({
       <h3>Детали заказа:</h3>
       <ul>
         <li>
+          <strong>Имя и фамилия:</strong> {order.fullName}
+        </li>
+        <li>
           <strong>Адрес:</strong> {order.address}
         </li>
         <li>
           <strong>Телефон:</strong> {order.phone}
         </li>
-        {order.comment && (
+        
           <li>
-            <strong>Комментарий:</strong> {order.comment}
+            <strong>Комментарий:</strong> {order.comment ? (order.comment): 'Без комментария'}
           </li>
-        )}
+        
       </ul>
 
       <p>
