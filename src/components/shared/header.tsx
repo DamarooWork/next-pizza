@@ -1,9 +1,13 @@
-
 import { cn } from '@/lib/utils'
-import { Container, SearchInput, CartButton, HeaderLogo } from '@/components/shared'
+import {
+  Container,
+  SearchInput,
+  CartButton,
+  HeaderLogo,
+} from '@/components/shared'
 import { Button } from '@/components/ui'
 import { User } from 'lucide-react'
-
+import { Suspense } from 'react'
 
 interface headerProps {
   className?: string
@@ -15,12 +19,13 @@ export function Header({
   hasSearch = true,
   hasCart = true,
 }: headerProps) {
- 
   return (
     <header className={cn('border-b-[1px]', className)}>
       <Container className="flex items-center justify-between py-8">
         {/*Левая часть */}
-        <HeaderLogo/>
+        <Suspense>
+          <HeaderLogo />
+        </Suspense>
 
         {hasSearch && (
           <div className="mx-10 flex-1">
