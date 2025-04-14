@@ -33,14 +33,14 @@ export function OrderSuccessTemplate({
         {items.map((item) => (
           <li key={item.id}>
             <strong>{item.productItem.product.name}</strong> |{' '}
-            {item.productItem.price}{' '}
-            {item.ingredients.length &&
+            {item.ingredients.length > 0 && '('}{item.productItem.price}{' '}
+            {item.ingredients.length > 0 &&
               '+ ' +
-                item.ingredients.map((ing) => (
+                item.ingredients.map((ing, i) => (
                   <span>
-                    {ing.price}({ing.name})
+                    {ing.price}({ing.name}) {i>0 && '+'}
                   </span>
-                ))}{' '}
+                ))+')'}
             × {item.quantity} шт. ={' '}
             {(item.productItem.price +
               item.ingredients.reduce((acc, ing) => acc + ing.price, 0)) *
@@ -49,7 +49,7 @@ export function OrderSuccessTemplate({
           </li>
         ))}
         <li>
-          <strong>Налог:</strong> {+((order.totalAmount * 100) / VAT)} руб.
+          <strong>Налог:</strong> {+((order.totalAmount /100) * VAT).toFixed()} руб.
         </li>
         <li>
           <strong>Доставка:</strong> {DELIVERY_PRICE} руб.
@@ -61,14 +61,14 @@ export function OrderSuccessTemplate({
       <h3>Детали заказа:</h3>
       <ul>
         <li>
-          <strong>Адрес:</strong> {order.address}
+          <strong>Адрес:</strong> '{order.address}'
         </li>
         <li>
           <strong>Телефон:</strong> {order.phone}
         </li>
         {order.comment && (
           <li>
-            <strong>Комментарий:</strong> {order.comment}
+            <strong>Комментарий:</strong> '{order.comment}'
           </li>
         )}
       </ul>
