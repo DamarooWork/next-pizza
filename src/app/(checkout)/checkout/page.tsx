@@ -53,8 +53,8 @@ export default function CheckoutPage() {
       }
       const url = await createOrder(data)
       toast.success('Заказ оформлен успешно')
-      if (url) {
-        location.href = url
+      if (url && typeof window !== 'undefined') {
+        window.location.href = url
       }
     } catch (error) {
       console.error(error)
