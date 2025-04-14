@@ -1,3 +1,4 @@
+'use client'
 import { Variant } from '@/components/shared/group-variants'
 import { GetAvailablePizzaSizes, PizzaSize, PizzaType } from '@/lib'
 import { ProductItem } from '@prisma/client'

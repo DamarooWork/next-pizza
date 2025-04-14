@@ -1,7 +1,8 @@
-import React from 'react'
+'use client'
 import { useCartStore } from '../store'
 import { CreateCartItemValues } from '../services/dto/cart.dto'
 import { CartStateItem } from '../lib/get-cart-details'
+import { useEffect } from 'react'
 
 type ReturnProps = {
   totalAmount: number
@@ -15,7 +16,7 @@ type ReturnProps = {
 export const useCart = (): ReturnProps => {
   const cartState = useCartStore()
 
-  React.useEffect(() => {
+  useEffect(() => {
     cartState.fetchCartItems()
   }, [])
 

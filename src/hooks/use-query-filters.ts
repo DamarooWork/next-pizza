@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+'use client'
 import { Filters } from './use-filters'
 import { useRouter } from 'next/navigation'
 import qs from 'qs'
