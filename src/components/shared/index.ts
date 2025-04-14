@@ -26,6 +26,7 @@ export { ErrorText } from './error-text';
 export { RequiredSymbol } from './required-symbol';
 export { ClearButton } from './clear-button';
 export { EmptyCartPlaceholder } from './empty-cart-placeholder';
+export {HeaderLogo} from './header-logo'
 // export { ProfileButton } from './profile-button';
 // export { InfoBlock } from './info-block';
 // export { ProfileForm } from './profile-form';
