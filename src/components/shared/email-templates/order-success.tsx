@@ -28,19 +28,21 @@ export function OrderSuccessTemplate({
         и принят в обработку.
       </p>
       <hr />
-      <h2>Список товаров:</h2>
+      <h3>Список товаров:</h3>
       <ul>
         {items.map((item) => (
           <li key={item.id}>
             <strong>{item.productItem.product.name}</strong> |{' '}
-            {item.ingredients.length > 0 && '('}{item.productItem.price}{' '}
+            {item.ingredients.length > 0 && '('}
+            {item.productItem.price}{' '}
             {item.ingredients.length > 0 &&
               '+ ' +
-                item.ingredients.map((ing, i) => (
+               `${item.ingredients.map((ing, i) => (
                   <span>
-                    {ing.price}({ing.name}) {i>0 && '+'}
+                    {ing.price}({ing.name}) {i > 0 && '+'}
                   </span>
-                ))+')'}
+                ))}` +
+                ')'}
             × {item.quantity} шт. ={' '}
             {(item.productItem.price +
               item.ingredients.reduce((acc, ing) => acc + ing.price, 0)) *
@@ -49,26 +51,26 @@ export function OrderSuccessTemplate({
           </li>
         ))}
         <li>
-          <strong>Налог:</strong> {+((order.totalAmount /100) * VAT).toFixed()} руб.
+          <strong>Налог:</strong>{' '}
+          {((order.totalAmount - DELIVERY_PRICE) / (1 + VAT / 100)).toFixed()}
         </li>
         <li>
           <strong>Доставка:</strong> {DELIVERY_PRICE} руб.
         </li>
       </ul>
-      <p>
-        Итого: <strong>{order.totalAmount}</strong> руб.
-      </p>
+      <h3>Итого: {order.totalAmount} руб.</h3>
+      <hr />
       <h3>Детали заказа:</h3>
       <ul>
         <li>
-          <strong>Адрес:</strong> '{order.address}'
+          <strong>Адрес:</strong> {order.address}
         </li>
         <li>
           <strong>Телефон:</strong> {order.phone}
         </li>
         {order.comment && (
           <li>
-            <strong>Комментарий:</strong> '{order.comment}'
+            <strong>Комментарий:</strong> {order.comment}
           </li>
         )}
       </ul>
