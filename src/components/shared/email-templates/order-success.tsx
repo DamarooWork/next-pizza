@@ -33,12 +33,14 @@ export function OrderSuccessTemplate({
         {items.map((item) => (
           <li key={item.id}>
             <strong>{item.productItem.product.name}</strong> |{' '}
-            {item.productItem.price} +{' '}
-            {item.ingredients.map((ing) => (
-              <span>
-                {ing.price}({ing.name})
-              </span>
-            ))}{' '}
+            {item.productItem.price}{' '}
+            {item.ingredients.length &&
+              '+ ' +
+                item.ingredients.map((ing) => (
+                  <span>
+                    {ing.price}({ing.name})
+                  </span>
+                ))}{' '}
             × {item.quantity} шт. ={' '}
             {(item.productItem.price +
               item.ingredients.reduce((acc, ing) => acc + ing.price, 0)) *
