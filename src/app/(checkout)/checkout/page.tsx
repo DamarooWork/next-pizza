@@ -1,3 +1,4 @@
+'use client'
 import { Title } from '@/components/shared'
 import dynamic from 'next/dynamic'
 const CheckoutForm = dynamic(
