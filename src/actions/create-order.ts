@@ -1,10 +1,10 @@
 'use server'
 
-import { CheckoutFormValues } from '@/components/shared'
+import { CheckoutFormValues, PayOrderTemplate } from '@/components/shared'
 import { prisma } from '../../prisma'
 import { OrderStatus } from '@prisma/client'
 import { cookies } from 'next/headers'
-
+import { CreatePayment, getTotalAndVatPrice, SendEmailPayOrder } from '@/lib'
 export async function createOrder(data: CheckoutFormValues) {
   try {
     const cookieStore = await cookies()
@@ -38,6 +38,9 @@ export async function createOrder(data: CheckoutFormValues) {
     if (cart?.totalAmount === 0) {
       throw new Error('Cart is empty')
     }
+    // Вычисляем общую сумму заказа с учетом Налога и Доставки
+    const { totalPrice } = getTotalAndVatPrice(cart.totalAmount)
+
     // Создаем заказ
     const order = await prisma.order.create({
       data: {
@@ -47,13 +50,46 @@ export async function createOrder(data: CheckoutFormValues) {
         phone: data.phone,
         address: data.address,
         comment: data.comment,
-        totalAmount: cart.totalAmount,
+        totalAmount: totalPrice,
         status: OrderStatus.PENDING,
         items: JSON.stringify(cart.items),
       },
     })
-    // Обнуляем totalAmount корзину
-    await prisma.cart.update({
+   
+
+    // Создаем платеж
+    const paymentData = await CreatePayment({
+      totalPrice: totalPrice,
+      orderId: order.id,
+      description: 'Оплата заказа # ' + order.id,
+    })
+    // Обрабатываем платеж
+    if (!paymentData) {
+      throw new Error('Ошибка создания платежа')
+    }
+    // Обновляем paymentId в заказе если платеж создан
+    await prisma.order.update({
+      where: {
+        id: order.id,
+      },
+      data: {
+        paymentId: paymentData.id,
+      },
+    })
+    const paymentUrl = paymentData.confirmation.confirmation_url
+    // Отправляем email с параметрами платежа
+    const info = await SendEmailPayOrder({
+      subject: `Оплата  заказа #${order.id} на сумму ${totalPrice} ₽`,
+      emailTo: data.email,
+      ReactNode: PayOrderTemplate({
+        orderId: order.id,
+        totalAmount: totalPrice,
+        paymentUrl,
+        className: 'bg-white p-8 rounded-lg shadow-md',
+      }),
+    })
+     // Обнуляем totalAmount корзину
+     await prisma.cart.update({
       where: {
         id: cart.id,
       },
@@ -68,11 +104,9 @@ export async function createOrder(data: CheckoutFormValues) {
       },
     })
 
-    // TODO: Создать заказ в системе ЮMoney
-
-    return '/checkout/' + cartToken
+    return paymentUrl
   } catch (error) {
-    console.error(error)
+    console.error('[CreateOrder] Server error', error)
     return null
   }
 }

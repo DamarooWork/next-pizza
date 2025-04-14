@@ -1,6 +1,6 @@
 import { WhiteBlock, CheckoutItemDetails } from '@/components/shared'
 import { Button, Skeleton } from '@/components/ui'
-import { DELIVERY_PRICE, VAT } from '@/lib'
+import { DELIVERY_PRICE, getTotalAndVatPrice } from '@/lib'
 import { cn } from '@/lib/utils'
 import { ArrowRight, Package, Percent, Truck } from 'lucide-react'
 
@@ -11,9 +11,8 @@ interface Props {
 }
 
 export function CheckoutSidebar({ className, loading, totalAmount }: Props) {
-  const vatPrice = (totalAmount * VAT) / 100
-  const totalPrice = totalAmount + vatPrice + DELIVERY_PRICE
-  return (
+  const {totalPrice, vatPrice} = getTotalAndVatPrice(totalAmount)
+  return (  
     <WhiteBlock className={cn('p-6 sticky top-6 w-[450px] h-fit', className)}>
       <div className="flex flex-col gap-1">
         <span className="text-xl">Итого:</span>

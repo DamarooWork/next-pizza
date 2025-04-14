@@ -30,7 +30,7 @@ export { EmptyCartPlaceholder } from './empty-cart-placeholder';
 // export { InfoBlock } from './info-block';
 // export { ProfileForm } from './profile-form';
 // export { Stories } from './stories';
-// export * from './email-temapltes';
+export * from './email-templates';
 export * from './checkout';
 export * from './form';
 export * from './modals'

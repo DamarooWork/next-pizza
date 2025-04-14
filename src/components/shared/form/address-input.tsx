@@ -9,11 +9,14 @@ interface Props {
 }
 
 export const AddressInput: React.FC<Props> = ({ onChange }) => {
-  const id = useId();
+  const id = useId()
   return (
     <AddressSuggestions
       uid={id}
-      token="033eb029d1d7af01f527f8de42f1b677944e42da"
+      token={
+        process.env.ADDRESS_SUGGESTIONS_TOKEN as string ||
+        'b5b8bb983ddcd08648080e0271d9dd367bb7aa65'
+      }
       onChange={(data) => onChange(data?.value || '')}
     />
   )
