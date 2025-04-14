@@ -32,7 +32,7 @@ export function CheckoutCart({
       >
         {loading ? (
           <Skeleton className="h-15 w-full" />
-        ) : items.length === 0 ? (
+        ) : !items || items.length === 0 ? (
           <EmptyCartPlaceholder />
         ) : (
           items.map((item) => (
