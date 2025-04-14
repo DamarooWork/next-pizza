@@ -12,12 +12,17 @@ import {
 import { useCart } from '@/hooks'
 import toast from 'react-hot-toast'
 import { createOrder } from '@/actions'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export function CheckoutForm() {
   const { items, totalAmount, loading, updateItemQuantity, removeCartItem } =
     useCart()
   const [submitting, setSubmitting] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const form = useForm<CheckoutFormValues>({
     resolver: zodResolver(CheckoutFormSchema),
@@ -52,8 +57,8 @@ export function CheckoutForm() {
       }
       const url = await createOrder(data)
       toast.success('Заказ оформлен успешно')
-      if (url && typeof location !== 'undefined') {
-        location.href = url
+      if (url && typeof window !== 'undefined') {
+        window.location.href = url
       }
     } catch (error) {
       console.error(error)
@@ -61,6 +66,10 @@ export function CheckoutForm() {
     } finally {
       setSubmitting(false)
     }
+  }
+
+  if (!mounted) {
+    return null
   }
 
   return (
