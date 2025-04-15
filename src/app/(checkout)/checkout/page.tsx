@@ -1,13 +1,5 @@
-'use client'
-import dynamic from 'next/dynamic'
-const CheckoutForm = dynamic(
-  () => import('@/components/shared').then((mod) => mod.CheckoutForm),
-  { ssr: false }
-)
-const Title = dynamic(
-  () => import('@/components/shared').then((mod) => mod.Title),
-  { ssr: false }
-)
+import { CheckoutForm, Title } from '@/components/shared'
+
 export default function CheckoutPage() {
   return (
     <section>
