@@ -1,12 +1,8 @@
 'use client'
 
 import React, { useId } from 'react'
-import dynamic from 'next/dynamic'
-
-const AddressSuggestions = dynamic(
-  () => import('react-dadata').then((mod) => mod.AddressSuggestions),
-  { ssr: false }
-)
+import { AddressSuggestions } from 'react-dadata'
+import 'react-dadata/dist/react-dadata.css'
 
 interface Props {
   onChange: (value?: string) => void

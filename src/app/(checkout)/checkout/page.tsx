@@ -1,15 +1,7 @@
-'use client'
-import { Title } from '@/components/shared'
-import dynamic from 'next/dynamic'
+import { CheckoutForm, Title } from '@/components/shared'
+import { Suspense } from 'react'
 
-const CheckoutForm = dynamic(
-  () => import('@/components/shared').then((mod) => mod.CheckoutForm),
-  {
-    ssr: false,
-  }
-)
-
-export default function CheckoutPage() {
+export default async function CheckoutPage() {
   return (
     <section>
       <Title
@@ -17,7 +9,9 @@ export default function CheckoutPage() {
         size="xl"
         className="font-extrabold mb-8"
       />
-      <CheckoutForm />
+      <Suspense>
+        <CheckoutForm />
+      </Suspense>
     </section>
   )
 }
