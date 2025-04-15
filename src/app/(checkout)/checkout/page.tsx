@@ -1,3 +1,4 @@
+'use client';
 import { Title } from '@/components/shared'
 import React from 'react'
 const CheckoutForm = React.lazy(() =>
