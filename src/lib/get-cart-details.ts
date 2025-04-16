@@ -1,21 +1,21 @@
-import { CartDTO } from '@/services/dto/cart.dto';
-import { calcCartItemTotalPrice } from '@/lib/calc-cart-item-total-price';
+import { CartDTO } from '@/services/dto/cart.dto'
+import { calcCartItemTotalPrice } from '@/lib/calc-cart-item-total-price'
 
 export type CartStateItem = {
-  id: number;
-  quantity: number;
-  name: string;
-  imageUrl: string;
-  price: number;
-  disabled?: boolean;
-  pizzaSize?: number | null;
-  pizzaType?: number | null;
-  ingredients: Array<{ name: string; price: number }>;
-};
+  id: number
+  quantity: number
+  name: string
+  imageUrl: string
+  price: number
+  disabled?: boolean
+  pizzaSize?: number | null
+  pizzaType?: number | null
+  ingredients: Array<{ name: string; price: number }>
+}
 
 interface ReturnProps {
-  items: CartStateItem[];
-  totalAmount: number;
+  items: CartStateItem[]
+  totalAmount: number
 }
 
 export const getCartDetails = (data: CartDTO): ReturnProps => {
@@ -32,10 +32,10 @@ export const getCartDetails = (data: CartDTO): ReturnProps => {
       name: ingredient.name,
       price: ingredient.price,
     })),
-  })) as CartStateItem[];
+  })) as CartStateItem[]
 
   return {
     items,
     totalAmount: data.totalAmount,
-  };
-};
+  }
+}

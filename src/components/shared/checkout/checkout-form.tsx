@@ -1,4 +1,6 @@
 'use client'
+export const dynamic = 'force-dynamic'
+
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import {
@@ -15,7 +17,6 @@ import { createOrder } from '@/actions'
 import { useState, useEffect } from 'react'
 import { useSession } from 'next-auth/react'
 import { Api } from '@/services/api-client'
-
 export function CheckoutForm() {
   const { items, totalAmount, loading, updateItemQuantity, removeCartItem } =
     useCart()

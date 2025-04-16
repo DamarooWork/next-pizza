@@ -9,7 +9,8 @@
     "lint": "next lint",
     "prisma:push": "prisma db push",
     "prisma:studio": "prisma studio",
-    "prisma:seed": "prisma db seed"
+    "prisma:seed": "prisma db seed",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -23,7 +24,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/qs": "^6.9.18",
     "axios": "^1.8.4",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.487.0",
@@ -38,6 +39,7 @@
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.55.0",
     "react-hot-toast": "^2.5.2",
+    "react-insta-stories": "^2.8.0",
     "react-use": "^17.6.0",
     "tailwind-merge": "^3.1.0",
     "ts-node": "^10.9.2",

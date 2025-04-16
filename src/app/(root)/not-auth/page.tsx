@@ -1,4 +1,6 @@
-import { InfoBlock } from "@/components/shared";
+export const dynamic = 'force-dynamic'
+
+import { InfoBlock } from '@/components/shared'
 
 export default function UnauthorizedPage() {
   return (
@@ -9,5 +11,5 @@ export default function UnauthorizedPage() {
         imageUrl="/assets/images/lock.png"
       />
     </div>
-  );
+  )
 }

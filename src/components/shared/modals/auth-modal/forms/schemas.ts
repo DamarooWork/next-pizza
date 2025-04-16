@@ -21,5 +21,5 @@ export const formRegisterSchema = formLoginSchema
     path: ['confirmPassword'],
   })
 
-  export type TFormLoginSchema = z.infer<typeof formLoginSchema>
-  export type TFormRegisterSchema = z.infer<typeof formRegisterSchema>
+export type TFormLoginSchema = z.infer<typeof formLoginSchema>
+export type TFormRegisterSchema = z.infer<typeof formRegisterSchema>

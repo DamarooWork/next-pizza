@@ -1,6 +1,6 @@
-import { Title } from '@/components/shared/title'
-import { CheckoutForm } from '@/components/shared/checkout/checkout-form'
+export const dynamic = 'force-dynamic'
 
+import { Title, CheckoutForm } from '@/components/shared'
 export default function CheckoutPage() {
   return (
     <>

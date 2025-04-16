@@ -28,10 +28,10 @@ export { EmptyCartPlaceholder } from './empty-cart-placeholder'
 export { HeaderLogo } from './header-logo'
 export { Providers } from './providers'
 export { ProfileButton } from './profile-button'
-export { InfoBlock } from './info-block';
-export { ProfileForm } from './profile-form';
-export {CheckoutSidebar} from './checkout-sidebar'
-// export { Stories } from './stories';
+export { InfoBlock } from './info-block'
+export { ProfileForm } from './profile-form'
+export { CheckoutSidebar } from './checkout-sidebar'
+export { Stories } from './stories'
 export * from './email-templates'
 export * from './checkout'
 export * from './form'

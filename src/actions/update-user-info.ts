@@ -1,13 +1,14 @@
 'use server'
 import { GetUserSession } from '@/lib/get-user-session'
 import { prisma } from '@/lib/prisma'
-import { hashSync } from 'bcrypt'
+import { hashSync } from 'bcryptjs'
 
 interface Props {
   email: string
   fullName: string
-  password: string
+  password?: string
 }
+
 export async function updateUserInfo({ email, fullName, password }: Props) {
   try {
     const currentUser = await GetUserSession()
@@ -21,7 +22,7 @@ export async function updateUserInfo({ email, fullName, password }: Props) {
       data: {
         email,
         fullName,
-        password: hashSync(password, 10),
+        ...(password && { password: hashSync(password, 10) }),
       },
     })
   } catch (error) {

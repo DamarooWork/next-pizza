@@ -1,4 +1,13 @@
-import { Container, Filters, Title, TopBar, ProductsGroupList } from '@/components/shared'
+export const dynamic = 'force-dynamic'
+
+import {
+  Container,
+  Filters,
+  Title,
+  TopBar,
+  ProductsGroupList,
+  Stories,
+} from '@/components/shared'
 import { Suspense } from 'react'
 import { FindPizzas } from '@/lib'
 import { CategoryWithProducts, GetSearchParams } from '@/lib/find-pizzas'
@@ -8,7 +17,7 @@ export default async function Home({
 }: {
   searchParams: GetSearchParams
 }) {
-  const params = await searchParams || {}
+  const params = (await searchParams) || {}
   const categories: CategoryWithProducts[] = await FindPizzas(params)
 
   const filteredCategories = categories.filter(
@@ -23,6 +32,7 @@ export default async function Home({
       {filteredCategories.length > 0 && (
         <TopBar categories={filteredCategories} />
       )}
+      <Stories />
       <Container className="mt-10 pb-14 ">
         <div className="flex gap-[60px]">
           {/* Фильтрация */}
