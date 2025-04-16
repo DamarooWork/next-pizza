@@ -29,12 +29,10 @@ export function OrderSuccessTemplate({ order, items, className }: Props) {
           <li key={item.id}>
             <strong>
               {item.productItem.product.name}
-              {item.productItem?.pizzaType}
               {item.productItem?.pizzaType &&
-                mapPizzaType[
+                ' ' + mapPizzaType[
                   item.productItem.pizzaType as keyof typeof mapPizzaType
                 ] + ' / '}
-              {item.productItem?.size}
               {item.productItem?.size && ' ' + 'см'}
             </strong>{' '}
             | {item.ingredients.length > 0 && '('}
@@ -44,7 +42,7 @@ export function OrderSuccessTemplate({ order, items, className }: Props) {
                 +{' '}
                 {item.ingredients.map((ingredient, i) => (
                   <span key={ingredient.id}>
-                    {ingredient.price}({ingredient.name})
+                    {ingredient.price + ' '}({ingredient.name})
                     {i < item.ingredients.length - 1 && ' + '}
                   </span>
                 ))}
