@@ -13,16 +13,15 @@ import { useCart } from '@/hooks'
 import toast from 'react-hot-toast'
 import { createOrder } from '@/actions'
 import { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
+import { Api } from '@/services/api-client'
 
 export function CheckoutForm() {
   const { items, totalAmount, loading, updateItemQuantity, removeCartItem } =
     useCart()
   const [submitting, setSubmitting] = useState(false)
   const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const { data: session } = useSession()
 
   const form = useForm<CheckoutFormValues>({
     resolver: zodResolver(CheckoutFormSchema),
@@ -35,6 +34,23 @@ export function CheckoutForm() {
       comment: '',
     },
   })
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+  useEffect(() => {
+    async function fetchUserInfo() {
+      const user = await Api.auth.getAuthUser()
+      const [firstName, lastName] = user.fullName.split(' ')
+
+      form.setValue('firstName', firstName)
+      form.setValue('lastName', lastName)
+      form.setValue('email', user.email)
+    }
+
+    if (session) {
+      fetchUserInfo()
+    }
+  }, [session])
   const validatePhone = (phone: string): boolean => {
     // Сначала удаляем все пробелы, скобки и тире из номера
     const cleanedPhone = phone.replace(/[\s\-()]/g, '')

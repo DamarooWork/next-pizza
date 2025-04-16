@@ -1,12 +1,5 @@
-import { Title } from '@/components/shared'
-import dynamic from 'next/dynamic'
-const CheckoutForm = dynamic(
-  () =>
-    import('@/components/shared').then((mod) => ({
-      default: mod.CheckoutForm,
-    })),
-  { ssr: !!false }
-)
+import { CheckoutForm, Title } from '@/components/shared'
+
 export default function CheckoutPage() {
   return (
     <>
@@ -15,7 +8,7 @@ export default function CheckoutPage() {
         size="xl"
         className="font-extrabold mb-8"
       />
-      <CheckoutForm />
+      {/* <CheckoutForm /> */}
     </>
   )
 }
