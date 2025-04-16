@@ -8,6 +8,7 @@ import { Prisma } from '@prisma/client'
 const ProductSelect = {
   id: true,
   name: true,
+  description: true,
   imageUrl: true,
   ingredients: true,
 } satisfies Prisma.ProductSelect
@@ -24,6 +25,7 @@ export default function ProductCard({
   id,
   name,
   price,
+  description,
   imageUrl,
   ingredients,
 }: ProductCardProps) {
@@ -48,14 +50,7 @@ export default function ProductCard({
           className="mb-1 mt-3 font-bold line-clamp-1"
         />
         <p className="text-sm text-gray-400 line-clamp-3">
-          {ingredients
-            .map((ingredient, i) => {
-              if (i === 0) {
-                return ingredient.name
-              }
-              return ingredient.name.toLowerCase()
-            })
-            .join(', ')}
+          {description}
         </p>
       </div>
 

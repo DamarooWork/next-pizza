@@ -14,9 +14,9 @@ export function CartButton({ className }: Props) {
       <Button
         loading={loading}
         className={cn(
-          'group relative cursor-pointer',
+          'group relative cursor-pointer transition-all duration-500 ease-in-out will-change-transform',
           { 'w-[105px]': loading },
-          className,
+          className
         )}
       >
         <b>{totalAmount} P</b>

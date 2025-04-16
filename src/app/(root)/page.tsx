@@ -26,13 +26,13 @@ export default async function Home({
 
   return (
     <>
+      <Stories />
       <Container className="mt-4 lg:mt-10">
-        <Title text="Все пиццы" size="lg" className="font-extrabold" />
+        <Title text="Все товары" size="lg" className="font-extrabold" />
       </Container>
       {filteredCategories.length > 0 && (
         <TopBar categories={filteredCategories} />
       )}
-      <Stories />
       <Container className="mt-10 pb-14 ">
         <div className="flex gap-[60px]">
           {/* Фильтрация */}

@@ -46,6 +46,7 @@ export function ProductsGroupList({
           <ProductCard
             key={product.id}
             id={product.id}
+            description={product.description}
             name={product.name}
             imageUrl={product.imageUrl}
             price={product.items[0].price}

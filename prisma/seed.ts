@@ -291,19 +291,49 @@ async function up() {
           'https://cdn.inappstory.ru/file/jv/sb/fh/io7c5zarojdm7eus0trn7czdet.webp?k=IgAAAAAAAAAE',
       },
       {
-        storyId: 1,
+        storyId: 2,
         sourceUrl:
           'https://cdn.inappstory.ru/file/ts/p9/vq/zktyxdxnjqbzufonxd8ffk44cb.webp?k=IgAAAAAAAAAE',
       },
       {
-        storyId: 1,
+        storyId: 2,
         sourceUrl:
           'https://cdn.inappstory.ru/file/ur/uq/le/9ufzwtpdjeekidqq04alfnxvu2.webp?k=IgAAAAAAAAAE',
       },
       {
-        storyId: 1,
+        storyId: 3,
         sourceUrl:
           'https://cdn.inappstory.ru/file/sy/vl/c7/uyqzmdojadcbw7o0a35ojxlcul.webp?k=IgAAAAAAAAAE',
+      },
+      {
+        storyId: 4,
+        sourceUrl:
+          'https://cdn.inappstory.ru/file/ll/j7/zs/lecl52ttakcljktzunodm3tzvc.webp?k=IgAAAAAAAAAEAQ',
+      },
+      {
+        storyId: 4,
+        sourceUrl:
+          'https://cdn.inappstory.ru/file/jv/sb/fh/io7c5zarojdm7eus0trn7czdet.webp?k=IgAAAAAAAAAE',
+      },
+      {
+        storyId: 5,
+        sourceUrl:
+          'https://cdn.inappstory.ru/file/ts/p9/vq/zktyxdxnjqbzufonxd8ffk44cb.webp?k=IgAAAAAAAAAE',
+      },
+      {
+        storyId: 5,
+        sourceUrl:
+          'https://cdn.inappstory.ru/file/ur/uq/le/9ufzwtpdjeekidqq04alfnxvu2.webp?k=IgAAAAAAAAAE',
+      },
+      {
+        storyId: 5,
+        sourceUrl:
+          'https://cdn.inappstory.ru/file/sy/vl/c7/uyqzmdojadcbw7o0a35ojxlcul.webp?k=IgAAAAAAAAAE',
+      },
+      {
+        storyId: 6,
+        sourceUrl:
+          'https://cdn.inappstory.ru/file/ll/j7/zs/lecl52ttakcljktzunodm3tzvc.webp?k=IgAAAAAAAAAEAQ',
       },
     ],
   })
@@ -316,6 +346,8 @@ async function down() {
   await prisma.$executeRaw`TRUNCATE TABLE "Ingredient" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "Product" RESTART IDENTITY CASCADE`
   await prisma.$executeRaw`TRUNCATE TABLE "ProductItem" RESTART IDENTITY CASCADE`
+  await prisma.$executeRaw`TRUNCATE TABLE "Story" RESTART IDENTITY CASCADE`
+  await prisma.$executeRaw`TRUNCATE TABLE "StoryItem" RESTART IDENTITY CASCADE`
 }
 async function main() {
   try {
