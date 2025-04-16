@@ -6,15 +6,10 @@ import { Order } from '@prisma/client'
 interface Props {
   order: Order
   items: CartItemDTO[]
-
   className?: string
 }
-export function OrderSuccessTemplate({
-  order,
-  items,
 
-  className,
-}: Props) {
+export function OrderSuccessTemplate({ order, items, className }: Props) {
   return (
     <section
       className={cn(
@@ -35,16 +30,17 @@ export function OrderSuccessTemplate({
             <strong>{item.productItem.product.name}</strong> |{' '}
             {item.ingredients.length > 0 && '('}
             {item.productItem.price}{' '}
-            {item.ingredients.length > 0 &&
-              '+ ' +
-                `${item.ingredients.map((ingredient, i) => {
-                  return (
-                    <span>
-                      {ingredient.price}({ingredient.name}){i > 0 && '+'}
-                    </span>
-                  )
-                })}` +
-                ') '}
+            {item.ingredients.length > 0 && (
+              <>
+                +{' '}
+                {item.ingredients.map((ingredient, i) => (
+                  <span key={ingredient.id}>
+                    {ingredient.price}({ingredient.name})
+                    {i < item.ingredients.length - 1 && ' + '}
+                  </span>
+                ))}
+              </>
+            )}{' '}
             × {item.quantity} шт. ={' '}
             {(item.productItem.price +
               item.ingredients.reduce((acc, ing) => acc + ing.price, 0)) *
@@ -72,7 +68,6 @@ export function OrderSuccessTemplate({
         <li>
           <strong>Телефон:</strong> {order.phone}
         </li>
-
         <li>
           <strong>Комментарий:</strong>{' '}
           {order.comment ? order.comment : 'Без комментария'}
