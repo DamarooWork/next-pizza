@@ -12,11 +12,20 @@ export function HeaderLogo({ className }: Props) {
   const searchParams = useSearchParams()
   const router = useRouter()
   useEffect(() => {
+    let toastMessage = ''
     if (searchParams.has('paid')) {
+      toastMessage =
+        'Ваш заказ успешно оформлен. Данные об заказе отправлены вам на почту.'
+    }
+    if (searchParams.has('verified')) {
+      toastMessage =
+        'Ваша почта успешно подтверждена! Теперь вы можете зайти в свой профиль! 🎉'
+    }
+    if (toastMessage) {
       setTimeout(() => {
-        toast.success(
-          'Ваш заказ успешно оформлен. Данные об заказе отправлены вам на почту.'
-        )
+        toast.success(toastMessage, {
+          duration: 5000,
+        })
         router.push('/')
       }, 300)
     }

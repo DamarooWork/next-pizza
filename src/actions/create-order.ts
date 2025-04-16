@@ -4,7 +4,9 @@ import { CheckoutFormValues, PayOrderTemplate } from '@/components/shared'
 import { prisma } from '@/lib/prisma'
 import { OrderStatus } from '@prisma/client'
 import { cookies } from 'next/headers'
-import { CreatePayment, getTotalAndVatPrice, sendEmail } from '@/lib'
+import {  getTotalAndVatPrice } from '@/lib'
+import { CreatePayment } from '@/lib/create-payment'
+import { sendEmail } from '@/lib/send-email'
 export async function createOrder(data: CheckoutFormValues) {
   try {
     const cookieStore = await cookies()

@@ -37,12 +37,14 @@ export function OrderSuccessTemplate({
             {item.productItem.price}{' '}
             {item.ingredients.length > 0 &&
               '+ ' +
-                `${item.ingredients.map((ing, i) => (
-                  <span>
-                    {ing.price}({ing.name}) {i > 0 && '+'}
-                  </span>
-                ))}` +
-                ')'}
+                `${item.ingredients.map((ingredient, i) => {
+                  return (
+                    <span>
+                      {ingredient.price}({ingredient.name}){i > 0 && '+'}
+                    </span>
+                  )
+                })}` +
+                ') '}
             × {item.quantity} шт. ={' '}
             {(item.productItem.price +
               item.ingredients.reduce((acc, ing) => acc + ing.price, 0)) *
@@ -51,9 +53,7 @@ export function OrderSuccessTemplate({
           </li>
         ))}
         <li>
-          <strong>Налог:</strong>{' '}
-          {order.totalAmount -
-            +((order.totalAmount - DELIVERY_PRICE) / (1 + VAT / 100)).toFixed()}
+          <strong>Налог на товар:</strong> {VAT}%
         </li>
         <li>
           <strong>Доставка:</strong> {DELIVERY_PRICE} руб.
@@ -72,11 +72,11 @@ export function OrderSuccessTemplate({
         <li>
           <strong>Телефон:</strong> {order.phone}
         </li>
-        
-          <li>
-            <strong>Комментарий:</strong> {order.comment ? (order.comment): 'Без комментария'}
-          </li>
-        
+
+        <li>
+          <strong>Комментарий:</strong>{' '}
+          {order.comment ? order.comment : 'Без комментария'}
+        </li>
       </ul>
 
       <p>

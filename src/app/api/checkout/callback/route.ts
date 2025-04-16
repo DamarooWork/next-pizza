@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { OrderStatus } from '@prisma/client'
 import { CartItemDTO } from '@/services/dto/cart.dto'
-import { getTotalAndVatPrice, sendEmail, VAT } from '@/lib'
+import { sendEmail } from '@/lib/send-email'
 import { OrderSuccessTemplate } from '@/components/shared'
 
 export async function POST(req: NextRequest) {
@@ -41,7 +41,6 @@ export async function POST(req: NextRequest) {
         ReactNode: OrderSuccessTemplate({
           order,
           items,
-          
         }),
       })
     } else {

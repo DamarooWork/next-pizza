@@ -1,3 +1,4 @@
+'use server'
 import { PaymentData } from '@/types'
 import axios from 'axios'
 interface CreatePaymentProps {

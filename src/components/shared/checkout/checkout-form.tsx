@@ -56,7 +56,9 @@ export function CheckoutForm() {
         return
       }
       const url = await createOrder(data)
-      toast.success('Заказ оформлен успешно')
+      toast.success('Заказ успешно создан, идет переход к оплате...', {
+        duration: 10000,
+      })
       if (url && typeof window !== 'undefined') {
         window.location.href = url
       }
