@@ -27,8 +27,12 @@ export function OrderSuccessTemplate({ order, items, className }: Props) {
       <ul>
         {items.map((item) => (
           <li key={item.id}>
-            <strong>{item.productItem.product.name}</strong> |{' '}
-            {item.ingredients.length > 0 && '('}
+            <strong>
+              {item.productItem.product.name}
+              {item.productItem?.pizzaType}
+              {item.productItem?.size}
+            </strong>{' '}
+            | {item.ingredients.length > 0 && '('}
             {item.productItem.price}{' '}
             {item.ingredients.length > 0 && (
               <>
