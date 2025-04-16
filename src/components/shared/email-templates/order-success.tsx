@@ -1,4 +1,4 @@
-import { DELIVERY_PRICE, VAT } from '@/lib'
+import { DELIVERY_PRICE, mapPizzaType, VAT } from '@/lib'
 import { cn } from '@/lib/utils'
 import { CartItemDTO } from '@/services/dto/cart.dto'
 import { Order } from '@prisma/client'
@@ -30,7 +30,12 @@ export function OrderSuccessTemplate({ order, items, className }: Props) {
             <strong>
               {item.productItem.product.name}
               {item.productItem?.pizzaType}
+              {item.productItem?.pizzaType &&
+                mapPizzaType[
+                  item.productItem.pizzaType as keyof typeof mapPizzaType
+                ] + ' / '}
               {item.productItem?.size}
+              {item.productItem?.size && ' ' + 'см'}
             </strong>{' '}
             | {item.ingredients.length > 0 && '('}
             {item.productItem.price}{' '}
