@@ -1,8 +1,8 @@
 'use client'
+import { CategoryWithProducts } from '@/lib/find-pizzas'
 import { cn } from '@/lib/utils'
 import { useCategoryStore } from '@/store/category'
 import Link from 'next/link'
-import { CategoryWithProducts } from '@/app/(root)/page'
 
 interface CategoriesProps {
   categories: CategoryWithProducts[]

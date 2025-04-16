@@ -1,6 +1,6 @@
 import { Container } from '@/components/shared/container'
 import { notFound } from 'next/navigation'
-import {  ProductForm } from '@/components/shared'
+import {  ProductForm } from '@/components/shared/'
 import { prisma } from '@/lib/prisma'
 interface Props {
   params: {

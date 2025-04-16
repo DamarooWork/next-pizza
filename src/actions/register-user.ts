@@ -1,5 +1,5 @@
 'use server'
-import { VerificationUserTemplate } from '@/components/shared'
+import { VerificationUserTemplate } from '@/components/shared/email-templates'
 import { sendEmail } from '@/lib/send-email'
 import { prisma } from '@/lib/prisma'
 import { hashSync } from 'bcrypt'

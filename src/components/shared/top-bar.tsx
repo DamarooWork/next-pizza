@@ -3,7 +3,7 @@ import React from 'react'
 import { Container } from './container'
 import { Categories } from './categories'
 import { SortPopup } from './sort-popup'
-import { CategoryWithProducts } from '@/app/(root)/page'
+import { CategoryWithProducts } from '@/lib/find-pizzas'
 
 interface Props {
   categories: CategoryWithProducts[]

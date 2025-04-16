@@ -40,11 +40,11 @@ export function CheckoutForm() {
   useEffect(() => {
     async function fetchUserInfo() {
       const user = await Api.auth.getAuthUser()
-      const [firstName, lastName] = user.fullName.split(' ')
 
-      form.setValue('firstName', firstName)
-      form.setValue('lastName', lastName)
-      form.setValue('email', user.email)
+      const [firstName, lastName] = user.fullName.split(' ')
+      form.setValue('firstName', firstName || '')
+      form.setValue('lastName', lastName || '')
+      form.setValue('email', user.email || '')
     }
 
     if (session) {

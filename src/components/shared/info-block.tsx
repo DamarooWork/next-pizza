@@ -1,20 +1,24 @@
-import React from 'react';
-import { Button } from '../ui/button';
-import { ArrowLeft } from 'lucide-react';
-import { Title } from './title';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
+import { Button } from '../ui/button'
+import { ArrowLeft } from 'lucide-react'
+import { Title } from './title'
+import Link from 'next/link'
+import { cn } from '@/lib/utils'
 
 interface Props {
-  title: string;
-  text: string;
-  className?: string;
-  imageUrl?: string;
+  title: string
+  text: string
+  className?: string
+  imageUrl?: string
 }
 
-export const InfoBlock: React.FC<Props> = ({ className, title, text, imageUrl }) => {
+export function InfoBlock({ className, title, text, imageUrl }: Props) {
   return (
-    <div className={cn(className, 'flex items-center justify-between w-[840px] gap-12')}>
+    <div
+      className={cn(
+        className,
+        'flex items-center justify-between w-[840px] gap-12'
+      )}
+    >
       <div className="flex flex-col">
         <div className="w-[445px]">
           <Title size="lg" text={title} className="font-extrabold" />
@@ -29,7 +33,10 @@ export const InfoBlock: React.FC<Props> = ({ className, title, text, imageUrl })
             </Button>
           </Link>
           <a href="">
-            <Button variant="outline" className="text-gray-500 border-gray-400 hover:bg-gray-50">
+            <Button
+              variant="outline"
+              className="text-gray-500 border-gray-400 hover:bg-gray-50"
+            >
               Обновить
             </Button>
           </a>
@@ -38,5 +45,5 @@ export const InfoBlock: React.FC<Props> = ({ className, title, text, imageUrl })
 
       <img src={imageUrl} alt={title} width={300} />
     </div>
-  );
-};
+  )
+}

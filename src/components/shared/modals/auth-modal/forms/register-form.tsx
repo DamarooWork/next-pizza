@@ -3,10 +3,11 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { formRegisterSchema, TFormRegisterSchema } from './schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
 import toast from 'react-hot-toast'
-import { FormInput, Title } from '@/components/shared'
+import { Title } from '@/components/shared'
 
 import { Button } from '@/components/ui'
 import { registerUser } from '@/actions'
+import { FormInput } from '@/components/shared/form'
 interface Props {
   onClose: () => void
   className?: string

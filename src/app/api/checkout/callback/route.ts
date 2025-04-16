@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma'
 import { OrderStatus } from '@prisma/client'
 import { CartItemDTO } from '@/services/dto/cart.dto'
 import { sendEmail } from '@/lib/send-email'
-import { OrderSuccessTemplate } from '@/components/shared'
+import { OrderSuccessTemplate } from '@/components/shared/email-templates'
 
 export async function POST(req: NextRequest) {
   try {

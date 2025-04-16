@@ -21,7 +21,6 @@ export { ProductForm } from './product-form'
 export { WhiteBlock } from './white-block'
 export { CheckoutItemDetails } from './checkout-item-details'
 export { CheckoutItem } from './checkout-item'
-export { CheckoutSidebar } from './checkout-sidebar'
 export { ErrorText } from './error-text'
 export { RequiredSymbol } from './required-symbol'
 export { ClearButton } from './clear-button'
@@ -31,6 +30,7 @@ export { Providers } from './providers'
 export { ProfileButton } from './profile-button'
 export { InfoBlock } from './info-block';
 export { ProfileForm } from './profile-form';
+export {CheckoutSidebar} from './checkout-sidebar'
 // export { Stories } from './stories';
 export * from './email-templates'
 export * from './checkout'

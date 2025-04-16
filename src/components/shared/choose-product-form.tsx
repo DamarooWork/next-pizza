@@ -1,6 +1,4 @@
 import { cn } from '@/lib/utils'
-import { ProductItem } from '@prisma/client'
-import { Ingredient } from '@prisma/client'
 import { Title } from './title'
 import { Button } from '../ui'
 import Image from 'next/image'

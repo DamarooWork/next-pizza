@@ -2,12 +2,13 @@
 import { FormProvider, useForm } from 'react-hook-form'
 import { formLoginSchema, TFormLoginSchema } from './schemas'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FormInput, Title } from '@/components/shared'
+import {  Title } from '@/components/shared'
 import { Button } from '@/components/ui'
 
 import Image from 'next/image'
 import toast from 'react-hot-toast'
 import { signIn } from 'next-auth/react'
+import { FormInput } from '@/components/shared/form'
 
 interface Props {
   onClose: VoidFunction

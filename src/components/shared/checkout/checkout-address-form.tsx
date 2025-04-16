@@ -1,11 +1,10 @@
 'use client'
 import {
-  AddressInput,
   ErrorText,
-  FormTextarea,
   WhiteBlock,
 } from '@/components/shared'
 import { Controller, useFormContext } from 'react-hook-form'
+import { AddressInput, FormTextarea } from '../form'
 
 interface Props {
   className?: string

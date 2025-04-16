@@ -1,6 +1,7 @@
 'use client'
 
-import { WhiteBlock, FormInput } from '@/components/shared'
+import { WhiteBlock } from '@/components/shared'
+import { FormInput } from '../form/form-input'
 interface Props {
   className?: string
 }

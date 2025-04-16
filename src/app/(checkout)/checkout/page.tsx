@@ -1,4 +1,5 @@
-import { CheckoutForm, Title } from '@/components/shared'
+import { Title } from '@/components/shared/title'
+import { CheckoutForm } from '@/components/shared/checkout/checkout-form'
 
 export default function CheckoutPage() {
   return (
@@ -8,7 +9,7 @@ export default function CheckoutPage() {
         size="xl"
         className="font-extrabold mb-8"
       />
-      {/* <CheckoutForm /> */}
+      <CheckoutForm />
     </>
   )
 }

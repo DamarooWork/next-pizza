@@ -1,12 +1,11 @@
 'use server'
 
-import { CheckoutFormValues, PayOrderTemplate } from '@/components/shared'
+import { CheckoutFormValues } from '@/components/shared/checkout'
 import { prisma } from '@/lib/prisma'
 import { OrderStatus } from '@prisma/client'
 import { cookies } from 'next/headers'
-import {  getTotalAndVatPrice } from '@/lib'
-import { CreatePayment } from '@/lib/create-payment'
-import { sendEmail } from '@/lib/send-email'
+import {  getTotalAndVatPrice, sendEmail, CreatePayment } from '@/lib'
+import { PayOrderTemplate } from '@/components/shared/email-templates'
 export async function createOrder(data: CheckoutFormValues) {
   try {
     const cookieStore = await cookies()
