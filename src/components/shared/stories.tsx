@@ -13,8 +13,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from '@/components/ui/carousel'
 interface Props {
   className?: string
@@ -48,22 +46,23 @@ export const Stories: React.FC<Props> = ({ className }) => {
 
   return (
     <>
-      <Container
-        className={cn(
-          'flex w-full mt-5 sm:mt-10',
-          className
-        )}
-      >
-        <Carousel className='w-full'>
-          <CarouselContent className='flex justify-between'>
+      <Container className={cn('flex w-full mt-5 sm:mt-10', className)}>
+        <Carousel className="w-full ">
+          <CarouselContent className="flex justify-between">
             {stories.length === 0 &&
               [...Array(6)].map((_, index) => (
-                <CarouselItem className="basis-1/4 lg:basis-1/6" key={index}>
+                <CarouselItem
+                  className="basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6 flex justify-center items-center"
+                  key={index}
+                >
                   <div className="w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse" />
                 </CarouselItem>
               ))}
             {stories.map((story) => (
-              <CarouselItem className="basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6 flex justify-center items-center" key={story.id}>
+              <CarouselItem
+                className="basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6 flex justify-center items-center"
+                key={story.id}
+              >
                 <Image
                   onClick={() => onClickStory(story)}
                   className="rounded-md cursor-pointer w-full"
@@ -75,7 +74,6 @@ export const Stories: React.FC<Props> = ({ className }) => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          
         </Carousel>
 
         {open && (
