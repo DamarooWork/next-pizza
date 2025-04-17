@@ -30,10 +30,12 @@ export function OrderSuccessTemplate({ order, items, className }: Props) {
             <strong>
               {item.productItem.product.name}
               {item.productItem?.pizzaType &&
-                ' ' + mapPizzaType[
-                  item.productItem.pizzaType as keyof typeof mapPizzaType
-                ] + ' / '}
-              {item.productItem?.size && ' ' + 'см'}
+                ' ' +
+                  mapPizzaType[
+                    item.productItem.pizzaType as keyof typeof mapPizzaType
+                  ] +
+                  ' / '}
+              {item.productItem?.size && item.productItem.size + ' ' + 'см'}
             </strong>{' '}
             | {item.ingredients.length > 0 && '('}
             {item.productItem.price}{' '}

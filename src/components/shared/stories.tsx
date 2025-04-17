@@ -8,7 +8,14 @@ import { cn } from '@/lib/utils'
 import { X } from 'lucide-react'
 import ReactStories from 'react-insta-stories'
 import { useClickAway } from 'react-use'
-
+import Image from 'next/image'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel'
 interface Props {
   className?: string
 }
@@ -43,28 +50,33 @@ export const Stories: React.FC<Props> = ({ className }) => {
     <>
       <Container
         className={cn(
-          'flex items-center justify-between gap-2 mt-10',
+          'flex w-full mt-5 sm:mt-10',
           className
         )}
       >
-        {stories.length === 0 &&
-          [...Array(6)].map((_, index) => (
-            <div
-              key={index}
-              className="w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse"
-            />
-          ))}
-
-        {stories.map((story) => (
-          <img
-            key={story.id}
-            onClick={() => onClickStory(story)}
-            className="rounded-md cursor-pointer"
-            height={250}
-            width={200}
-            src={story.previewImageUrl}
-          />
-        ))}
+        <Carousel className='w-full'>
+          <CarouselContent className='flex justify-between'>
+            {stories.length === 0 &&
+              [...Array(6)].map((_, index) => (
+                <CarouselItem className="basis-1/4 lg:basis-1/6" key={index}>
+                  <div className="w-[200px] h-[250px] bg-gray-200 rounded-md animate-pulse" />
+                </CarouselItem>
+              ))}
+            {stories.map((story) => (
+              <CarouselItem className="basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6 flex justify-center items-center" key={story.id}>
+                <Image
+                  onClick={() => onClickStory(story)}
+                  className="rounded-md cursor-pointer w-full"
+                  height={250}
+                  width={200}
+                  alt={'story'}
+                  src={story.previewImageUrl}
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          
+        </Carousel>
 
         {open && (
           <div className="fixed left-0 top-0 w-full h-full bg-black/80 flex items-center justify-center z-30">
