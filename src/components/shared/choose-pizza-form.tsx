@@ -56,10 +56,13 @@ export function ChoosePizzaForm({
   }
   return (
     <section
-      className={cn('flex flex-1 items-center justify-between', className)}
+      className={cn(
+        'flex  items-center justify-between max-w-[90vw]',
+        className
+      )}
     >
       <PizzaImage src={imageUrl} alt={name} size={size} className=" m-8" />
-      <div className="flex  flex-col justify-between w-[490px] h-full  bg-[#f7f6f5] p-7">
+      <div className="flex  flex-col justify-between w-[490px] max-h-[90vh] overflow-y-auto  h-full  bg-[#f7f6f5] p-7">
         <div className="flex flex-col gap-2">
           <Title text={name} className="font-extrabold" size="md" />
           <p className="text-gray-400">{description}</p>
@@ -75,7 +78,7 @@ export function ChoosePizzaForm({
             onClick={(value) => setType(Number(value) as PizzaType)}
             items={pizzaTypes}
           />
-          <div className="grid grid-cols-3 gap-3 max-h-[380px] overflow-y-auto py-2 pr-2 scrollbar">
+          <div className="grid grid-cols-3 gap-3 max-h-[300px] overflow-y-auto py-2 pr-2 scrollbar">
             {ingredients.map((ingredient) => {
               return (
                 <IngredientItem
