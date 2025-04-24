@@ -7,7 +7,7 @@ import { Container } from './container'
 import { cn } from '@/lib/utils'
 import { X } from 'lucide-react'
 import ReactStories from 'react-insta-stories'
-import { useClickAway } from 'react-use'
+import { useClickAway, useWindowSize } from 'react-use'
 import Image from 'next/image'
 import {
   Carousel,
@@ -24,7 +24,7 @@ export const Stories: React.FC<Props> = ({ className }) => {
   const [selectedStory, setSelectedStory] = React.useState<IStory>()
   const storiesRef = React.useRef<HTMLDivElement>(null)
   useClickAway(storiesRef, () => setOpen(false))
-
+  const { width, height } = useWindowSize()
   React.useEffect(() => {
     async function fetchStories() {
       const data = await Api.stories.getAll()
@@ -94,8 +94,8 @@ export const Stories: React.FC<Props> = ({ className }) => {
                   })) || []
                 }
                 defaultInterval={3000}
-                width={520}
-                height={800}
+                width={width > 550 ? 520 : width}
+                height={0.9 * height}
               />
             </div>
           </div>
