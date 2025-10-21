@@ -78,7 +78,11 @@ export const Stories: React.FC<Props> = ({ className }) => {
 
         {open && (
           <div className="fixed left-0 top-0 w-full h-full bg-black/80 flex items-center justify-center z-30">
-            <div ref={storiesRef} className="relative" style={{ width: 520 }}>
+            <div
+              ref={storiesRef}
+              className="relative"
+              style={{ width: width > 550 ? 520 : width }}
+            >
               <button
                 className="absolute cursor-pointer -right-10 -top-5 z-30"
                 onClick={() => setOpen(false)}
@@ -95,7 +99,7 @@ export const Stories: React.FC<Props> = ({ className }) => {
                 }
                 defaultInterval={3000}
                 width={width > 550 ? 520 : width}
-                height={0.9 * height}
+                height={0.8 * height}
               />
             </div>
           </div>
